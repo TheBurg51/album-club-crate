@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Album Club Crate</title>
-<meta name="description" content="64 albums heard · 11.0% of the Rolling Stone 500 · Up next: Still Bill and Dirty Mind">
+<meta name="description" content="66 albums heard · 11.4% of the Rolling Stone 500 · Up next: The Idler Wheel... and DAMN.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Album Club Crate">
 <meta property="og:title" content="The Crate So Far · Album of the Week Club">
-<meta property="og:description" content="64 albums heard · 11.0% of the Rolling Stone 500 · Up next: Still Bill and Dirty Mind">
+<meta property="og:description" content="66 albums heard · 11.4% of the Rolling Stone 500 · Up next: The Idler Wheel... and DAMN.">
 <meta property="og:url" content="https://theburg51.github.io/album-club-crate/">
-<meta property="og:image" content="https://theburg51.github.io/album-club-crate/preview.png?v=29">
+<meta property="og:image" content="https://theburg51.github.io/album-club-crate/preview.png?v=30">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Album Club progress: the Rolling Stone 500 grid with the albums we've heard lit up">
@@ -164,10 +164,12 @@ const R=[
 [27,"Abandoned Luncheonette","Hall & Oates",1973,-1,"332663733","Jerry"],
 [27,"Diamond Life","Sade",1984,200,"211429791"],
 [28,"Curtis","Curtis Mayfield",1970,275,"29168201"],
-[28,"Dig Me Out","Sleater-Kinney",1997,189,"906136610"]
+[28,"Dig Me Out","Sleater-Kinney",1997,189,"906136610"],
+[29,"Still Bill","Bill Withers",1972,333,"989376986"],
+[29,"Dirty Mind","Prince",1980,326,"1544296643"]
 ];
 const row=([w,t,a,y,r,am,st])=>({w,t,a,y,r:r>0?r:undefined,off:r<0,am,st}), A=R.map(row);
-const NEXT=[[29,"Still Bill","Bill Withers",1972,333,"989376986"],[29,"Dirty Mind","Prince",1980,326,"1544296643"]].map(row);
+const NEXT=[[30,"The Idler Wheel...","Fiona Apple",2012,213,"1462213924"],[30,"DAMN.","Kendrick Lamar",2017,175,"1440881047"]].map(row);
 const $=id=>document.getElementById(id);
 const NOTES=[
 {v:"1.7",d:"Nov 23, 2026",items:["The Crate has a new home at theburg51.github.io/album-club-crate. Bring your catch-up progress over with \u201cCopy my code\u201d on the old page and \u201cLoad code\u201d here.","Catching up? Tap \u201cPick one for me\u201d in Your crate and the page picks a random album you missed.","There\u2019s a turntable at the bottom of the page. Give the record a spin, or drop the needle to hear a 30-second preview of a random album from the crate. While it plays, grab the record to stop it or spin it to scratch.","This week\u2019s albums now get their own big spot at the top of the page, Show & Tell takes up less room (tap \u201cSee the full rotation\u201d for everyone\u2019s turn), and the turntable sits right above the log.","Album covers now show in the log, on the grid and in your catch-up list. Tap a square on the grid to see its cover.","Sharing the link in a group chat now shows a preview card with our progress and what\u2019s up next."]},
