@@ -8,6 +8,7 @@ The site's own Release notes section shows only the two most recent versions. Th
 
 - **Show & Tell picks gallery:** every off-list pick with its cover, picker and month.
 - **Milestones:** badges for what the club has hit (albums heard, share of the list, top-10 albums) and a progress bar to the next one. When a week pushes the club past a milestone, a banner and confetti celebrate it, once per device.
+- **Your numbers:** for someone catching up, the headline numbers, the % sticker, coverage by list position and the release-year timeline count only what they've heard: the club's albums from their join week on, plus everything they've ticked off. A Your numbers / Club numbers switch flips back to the club view.
 - **Album birthdays:** a Fun facts card naming club albums with a release anniversary this week, or the next one coming up. It uses Apple Music release dates only when their year matches the album's original year, so remaster dates are ignored.
 - **Club Wrapped:** a year-in-review card that appears every December and January, with a Share button. Preview it any time with `?wrapped`.
 - **Add to Home Screen:** app icon, name and web app manifest, so the Crate opens like an app from a phone's home screen. A bar pinned to the bottom of the screen shows how, tailored to iPhone, Android or desktop, with a one-tap Install button where the browser supports it. It disappears whenever the Crate is opened from the home screen.
