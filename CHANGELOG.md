@@ -19,6 +19,7 @@ The site's own Release notes section shows only the two most recent versions. Th
 - **Move your crate** folds away behind its heading (closed by default, remembers your choice), and got a cleaner layout: a Send card with one-tap Copy my crate link (opening the link on another device loads your progress), and a Receive card that accepts a link or an older code.
 - Opening the site with `?code=<crate code>` loads that progress automatically. The old claude.ai page's button uses this to carry everyone's progress over.
 - **Fixed:** hidden sections could still show on the GitHub version of the page.
+- The home-screen icon has a yellow background so it stands out on dark and light home screens alike.
 - The browser-tab icon has a light rim and lighter grooves in dark mode, so it stands out on dark tab bars.
 
 ## v1.7 · Nov 23, 2026
