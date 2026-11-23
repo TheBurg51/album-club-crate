@@ -6,6 +6,7 @@ The site's own Release notes section shows only the two most recent versions. Th
 
 ## v1.9 · Nov 23, 2026
 
+- **Automatic-turntable tonearm:** tapping the arm raises it, swings it slowly over the record (about 2 seconds) and lowers it. The music starts when the needle lands. Lifting stops the sound at once, then the arm rises and swings home.
 - **Softer turntable crackle:** a few gentle pops a second over a faint hiss instead of heavy static, and it drops even lower once the song starts.
 - **Jump menu:** a sticky row of links (This week · My crate · Stats · Turntable · Log) that highlights the section on screen. In home-screen mode the ↻ refresh button sits in it.
 - **Shorter log:** the last four weeks show, with a Show all weeks button for the rest.
