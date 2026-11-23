@@ -104,6 +104,18 @@ h1{line-height:.95}h2{line-height:1.05}.twc a.ttl{letter-spacing:-.01em;font-var
 }
 @media (max-width:640px){.swh{display:inline}.supers,.stg{-webkit-mask-image:linear-gradient(90deg,#000 82%,transparent);mask-image:linear-gradient(90deg,#000 82%,transparent)}}
 
+
+/* Rocco stickers */
+.toast.hasrk{padding-left:94px;min-height:66px;display:flex;align-items:center}
+.toast .rk{position:absolute;left:6px;bottom:4px;height:88px;width:auto;filter:drop-shadow(0 3px 5px rgba(0,0,0,.35));transform-origin:50% 100%;pointer-events:none}
+.toast.on .rk{animation:rkup .7s cubic-bezier(.25,1.5,.5,1) .12s both,rkwig 1.2s ease-in-out .9s 2}
+@keyframes rkup{from{transform:translateY(40px) scale(.4) rotate(-12deg);opacity:0}to{transform:none;opacity:1}}
+@keyframes rkwig{0%,100%{transform:rotate(0)}25%{transform:rotate(-6deg)}75%{transform:rotate(6deg)}}
+.mscel{grid-template-columns:auto minmax(0,1fr) auto auto}
+.mscel .msrk{height:96px;width:auto;align-self:end;margin:-34px 0 -16px;filter:drop-shadow(0 3px 5px rgba(0,0,0,.35));transform-origin:50% 100%;animation:rkup .8s cubic-bezier(.25,1.5,.5,1) .5s both}
+.mscel .msrk.wig{animation:rkwig .5s ease-in-out 3}
+@media (max-width:520px){.mscel{grid-template-columns:auto minmax(0,1fr) auto}.mscel .msrk{height:92px;margin:-30px -4px -14px 0}.toast.hasrk{padding-left:84px}.toast .rk{height:78px}}
+@media (prefers-reduced-motion:reduce){.toast .rk,.mscel .msrk{animation:none!important}}
 </style>
 </head>
 <body>
@@ -297,7 +309,7 @@ const row=([w,t,a,y,r,am,st])=>({w,t,a,y,r:r>0?r:undefined,off:r<0,am,st}), A=R.
 const NEXT=[[30,"The Idler Wheel...","Fiona Apple",2012,213,"1462213924"],[30,"DAMN.","Kendrick Lamar",2017,175,"1440881047"]].map(row);
 const $=id=>document.getElementById(id);
 const NOTES=[
-{v:"2.0",d:"Nov 23, 2026",items:["The turntable has a walnut wood finish, and its Album Club label now stars Rocco.","A secret on the turntable: give the record a good spin before you drop the needle and see what happens.","A warmer look: cream paper, a soft serif for headings, and burnt orange and mustard instead of the old blue. Dark mode turns warm espresso.","Drop the needle and the record turns into colored vinyl that matches the album cover: splatter, swirl or a two-tone blend.","Roomier on phones: album titles get more space on This week\u2019s cards and in the log, long catch-up lists show 8 at a time, and swipe rows fade at the edge so you know there\u2019s more.","The home-screen icon, the turntable and the link preview card got the same warm makeover. To get the new icon, remove the Crate from your home screen and add it again."]},
+{v:"2.0",d:"Nov 23, 2026",items:["The turntable has a walnut wood finish, and its Album Club label now stars Rocco.","Rocco pops up to cheer you on when you tick off catch-up albums, and puts on a party hat for the big moments and club milestones.","A secret on the turntable: give the record a good spin before you drop the needle and see what happens.","A warmer look: cream paper, a soft serif for headings, and burnt orange and mustard instead of the old blue. Dark mode turns warm espresso.","Drop the needle and the record turns into colored vinyl that matches the album cover: splatter, swirl or a two-tone blend.","Roomier on phones: album titles get more space on This week\u2019s cards and in the log, long catch-up lists show 8 at a time, and swipe rows fade at the edge so you know there\u2019s more.","The home-screen icon, the turntable and the link preview card got the same warm makeover. To get the new icon, remove the Crate from your home screen and add it again."]},
 {v:"1.9",d:"Nov 23, 2026",items:["A menu at the top jumps straight to This week, My crate, Stats, the Turntable or the Log, and sticks around as you scroll.","The log shows the last four weeks. Tap \u201cShow all weeks\u201d for the rest.","Phones get a tighter layout: smaller stat tiles, the % sticker next to the intro, the release-year chart grouped by decade, and swipeable rows for Fun facts and Show & Tell picks.","Off-list albums carry an OFF-LIST tag in the log, and the home-screen bar is slimmer (tap How for the steps)."]},
 ];
 const picks={Nathan:"Yumeno Garden",Devo:"Coming Home",Neil:"Petals for Armor","George Price":"E. 1999 Eternal","Bryan Bland":"Peripheral Vision",Jerry:"Abandoned Luncheonette"};
@@ -364,13 +376,17 @@ $("spin").textContent="🎲 Pick another";setSvc(store.get("ac.svc","spotify"));
 $("spDone").onclick=()=>{caught.add(x.t);save();redo();cheer(x.t);lastPick=null;$("spin").textContent="🎲 Pick one for me";H("spOut",`<p class="sub">Nice, <b>${esc(x.t)}</b> is checked off.</p>`)}};
 $("catch").onchange=e=>{const t=e.target.dataset.t;if(t){e.target.checked?caught.add(t):caught.delete(t);save();paint();e.target.checked&&cheer(t)}};
 // motivation when someone ticks off a catch-up album
-let tT=0;const toast=h=>{const e=$("toast");e.innerHTML=h;e.classList.add("on");clearTimeout(tT);tT=setTimeout(()=>e.classList.remove("on"),3800)};
+let tT=0;const toast=(h,rk)=>{const e=$("toast");e.innerHTML=(rk?`<span>${h}</span>`:h)+(rk?`<img class="rk" src="img/rocco-${rk}.webp" alt="">`:"");e.classList.toggle("hasrk",!!rk);e.classList.remove("on");void e.offsetWidth;e.classList.add("on");clearTimeout(tT);tT=setTimeout(()=>e.classList.remove("on"),rk?4300:3800)};
+// Rocco stickers: load them early so the first cheer shows him straight away
+setTimeout(()=>["sit","peek","sleep","party"].forEach(n=>{new Image().src=`img/rocco-${n}.webp`}),2500);
 function cheer(t){const m=missedAll(),left=m.filter(x=>!caught.has(x.t)).length,done=m.length-left,pick=a=>a[Math.random()*a.length|0],T=`<b>${esc(t)}</b>`;
-if(!left){toast(`\ud83c\udf89 <b>You're all caught up!</b> All ${m.length} albums heard. Welcome to the front row.`);confetti(140);return}
-if(done===Math.ceil(m.length/2)){toast(`Halfway there! <b>${done} of ${m.length}</b> down. Keep that needle moving.`);confetti(80);return}
-if(left<=3){toast(`So close: just <b>${left}</b> album${left===1?"":"s"} until you're caught up with everyone!`);confetti(50);return}
-if(done%10===0){toast(`<b>${done} albums</b> caught up. That's a whole crate's worth.`);confetti(60);return}
-toast(pick([`${T} is in the crate. ${left} to go!`,`Needle drop! ${T} \u2713. ${left} left.`,`You're on a roll. ${done} down, ${left} to go.`,`Another one for the crate: ${T}.`,`${T}, checked. Now you can weigh in with the group.`,`Spin, listen, tick. ${left} more and you're caught up.`,`Look at you go! ${done} caught up so far.`]));confetti(24)}
+if(!left){toast(`\ud83c\udf89 <b>You're all caught up!</b> All ${m.length} albums heard. Rocco put on his party hat for this one.`,"party");confetti(140);return}
+if(done===Math.ceil(m.length/2)){toast(`Halfway there! <b>${done} of ${m.length}</b> down. Rocco's celebrating. Keep that needle moving.`,"party");confetti(80);return}
+if(left<=3){toast(`So close: just <b>${left}</b> album${left===1?"":"s"} until you're caught up with everyone!`,"party");confetti(50);return}
+if(done%10===0){toast(`<b>${done} albums</b> caught up. That's a whole crate's worth. Party hat on.`,"party");confetti(60);return}
+const [h,rk]=pick([[`${T} is in the crate. ${left} to go!`],[`Needle drop! ${T} \u2713. ${left} left.`],[`You're on a roll. ${done} down, ${left} to go.`],[`Another one for the crate: ${T}.`],[`${T}, checked. Now you can weigh in with the group.`],[`Spin, listen, tick. ${left} more and you're caught up.`],[`Look at you go! ${done} caught up so far.`],
+[`Rocco napped through ${T}. You didn't. ${left} to go.`,"sleep"],[`Rocco's keeping an eye on your progress: ${done} down, ${left} to go.`,"peek"],[`Rocco gives ${T} a nod from the couch. ${left} left.`,"sit"]]);
+toast(h,rk||pick(["sit","peek","sit","peek","sleep"]));confetti(24)}
 sel.onchange=()=>{join=sel.value===""?null:+sel.value;save();redo();H("spOut","");lastPick=null;$("spin").textContent="🎲 Pick one for me"};
 redo();
 try{$("xfer").open=localStorage.getItem("ac.xfer")==="1"}catch(e){}$("xfer").ontoggle=()=>store.set("ac.xfer",$("xfer").open?1:0);
@@ -449,8 +465,8 @@ H("ms",done.map(t=>`<span class="on">${esc(t)}</span>`).join("")+(nxt?`<span cla
 if(nxt){const lo=[0,...MS[0][1]].filter(m=>m<nxt[0]).pop();$("msBar").style.width=(N-lo)/(nxt[0]-lo)*100+"%";$("msNext").textContent=`${nxt[0]-N} album${nxt[0]-N===1?"":"s"} to ${nxt[0]}`}
 function confetti(n=90){if(matchMedia("(prefers-reduced-motion: reduce)").matches)return;const c=el("div");c.className="cf";const cols=["#eeb03b","#c4552a","#ee8a55","#f2e7d8","#e07a3e"];
 for(let i=0;i<n;i++){const p=el("i");p.style.left=Math.random()*100+"%";p.style.background=cols[i%5];p.style.setProperty("--dx",(Math.random()*160-80)+"px");p.style.setProperty("--r",(Math.random()*900-450)+"deg");p.style.animationDuration=2.2+Math.random()*2+"s";p.style.animationDelay=Math.random()*.6+"s";c.append(p)}document.body.append(c);setTimeout(()=>c.remove(),5200)}
-if(fresh.length){const m=fresh[fresh.length-1];$("mscel").hidden=false;H("mscel",`<div class="bd" aria-hidden="true"><div>${m.match(/^[\d.]+%?/)?.[0]||"★"}<small>${/album/.test(m)?"ALBUMS":"CLUB"}</small></div></div><div><b>Milestone: ${esc(m)}!</b><p>Week ${lastWeek} got us there. Nice work, everybody.</p></div><button type="button" id="msAgain">Confetti!</button>`);
-$("msAgain").onclick=confetti;if(store.get("ac.ms","")!==m){store.set("ac.ms",m);setTimeout(confetti,400)}}
+if(fresh.length){const m=fresh[fresh.length-1];$("mscel").hidden=false;H("mscel",`<div class="bd" aria-hidden="true"><div>${m.match(/^[\d.]+%?/)?.[0]||"★"}<small>${/album/.test(m)?"ALBUMS":"CLUB"}</small></div></div><div><b>Milestone: ${esc(m)}!</b><p>Week ${lastWeek} got us there. Nice work, everybody.</p></div><img class="msrk" id="msRk" src="img/rocco-party.webp" alt="Rocco in a party hat"><button type="button" id="msAgain">Confetti!</button>`);
+$("msAgain").onclick=()=>{confetti();const r=$("msRk");r.classList.remove("wig");void r.offsetWidth;r.classList.add("wig")};if(store.get("ac.ms","")!==m){store.set("ac.ms",m);setTimeout(confetti,400)}}
 // Show & Tell gallery
 H("stg",snt.slice().reverse().map(x=>`<a class="tt" data-q="${esc(x.t+" "+x.a)}" data-am="${x.am||""}" target="_blank" rel="noopener"><i class="cv" data-k="${esc(key(x))}"></i><b>${esc(x.t)}</b><span class="ar">${esc(x.a)} · ${x.y}</span>${tag(x)}<span class="ar">${new Date(2026,4,7*x.w+3).toLocaleDateString("en-US",{month:"long",year:"numeric"})}</span></a>`).join(""));
 // Show & Tell row: arrow buttons on wider screens, hidden when everything fits

@@ -30,6 +30,7 @@ The site's own Release notes section shows only the two most recent versions. Th
   - The leftover all-caps labels became italic serif.
   - Swipe rows fade at the edge, with a "Swipe for more" hint.
 - **Rocco label:** the record's default Album Club label has a screen-print portrait of Rocco (`img/rocco.png`) popping out of a burnt-orange circle, with "The Crate · Album Club · 33⅓" curved along the bottom.
+- **Rocco cheers:** catch-up cheers come with a Rocco sticker that pops up and wiggles on the message: sitting, peeking over a pillow or napping, with some lines of his own. Halfway, the last three, every tenth album and fully caught up get party-hat Rocco, and so does the milestone banner (the Confetti! button makes him wiggle). Stickers are `img/rocco-*.webp`.
 - **Turntable Easter egg:** a hard flick (or a few full turns) of the record while the needle is up drops the arm by itself and plays the "Never Gonna Give You Up" preview, with Rick Astley's cover on the label and matching colored vinyl. The page's release notes only hint at it.
 - The turntable deck has a walnut wood-grain finish (`img/wood.jpg`), the home-screen icon is a black record with a burnt-orange label on mustard, and the link-preview card (`preview.png`) uses the new palette and serif.
 
