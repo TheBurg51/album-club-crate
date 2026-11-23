@@ -29,6 +29,7 @@ The site's own Release notes section shows only the two most recent versions. Th
   - Rotation names wrap instead of getting cut off.
   - The leftover all-caps labels became italic serif.
   - Swipe rows fade at the edge, with a "Swipe for more" hint.
+- **Turntable Easter egg:** a hard flick (or a few full turns) of the record while the needle is up drops the arm by itself and plays the "Never Gonna Give You Up" preview, with Rick Astley's cover on the label and matching colored vinyl. The page's release notes only hint at it.
 - The turntable deck is walnut brown, the home-screen icon is a black record with a burnt-orange label on mustard, and the link-preview card (`preview.png`) uses the new palette and serif.
 
 ## v1.9 · Nov 23, 2026
