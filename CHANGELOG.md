@@ -13,6 +13,7 @@ The site's own Release notes section shows only the two most recent versions. Th
   - The % sticker sits beside the intro.
   - The release-year chart groups dots by decade, so they're big enough to tap.
   - Fun facts and Show & Tell picks become swipeable rows.
+- **Show & Tell picks** are a single scrolling row on every screen (newest first), with ‹ › arrows on computers once the row overflows.
 - **Log:** off-list albums get an OFF-LIST tag under the artist instead of "off-list" squeezed into the rank column.
 - **Home-screen bar:** one slim line; tap How for the steps.
 - **Release notes:** older versions fold behind "Earlier".
