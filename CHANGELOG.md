@@ -12,6 +12,12 @@ The site's own Release notes section shows only the two most recent versions. Th
   - Italic serif labels instead of the monospace all-caps ones.
   - Burnt orange (#c4552a) and mustard (#eeb03b) replace the blue and bright yellow.
   - Dark mode is warm espresso.
+- **New log layout:**
+  - Weeks are grouped under month headings.
+  - Each week is its own card, with "Week 29 · Nov 16–22" in the header.
+  - Album rows have bigger covers, the title over the artist, and one line for year and rank.
+  - A week's two albums sit side by side on computers.
+  - Show & Tell weeks get a mustard edge and a tag.
 - **Realistic tonearm:** a ribbed counterweight, chrome pivot on a base plate, a polished tube with a gentle bend, an angled headshell with finger lift and cartridge, and an arm rest. The shadow deepens as the arm lifts.
 - **Colored vinyl:** when the needle drops, the record takes on the album cover's main colors as a splatter, swirl or split variant (the same style every time for a given album), and fades back to black when the arm lifts.
 - **Projected finish** is a specific week: the tile shows the month and year with "projected finish: week N, the week of …", worked out week by week (two list albums a week, one in Show & Tell weeks). The intro line names the same week.

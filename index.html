@@ -39,7 +39,7 @@
 .jump .rfb{position:static;flex:none;width:32px;height:32px;font-size:16px;margin-left:auto;box-shadow:none}
 [id^="s-"]{scroll-margin-top:64px}
 .more{justify-self:center;font:inherit;font-size:14px;font-weight:600;padding:9px 18px;border-radius:999px;border:1.5px solid var(--in);background:transparent;color:var(--in);cursor:pointer}.more:focus-visible{outline:2px solid var(--co);outline-offset:2px}
-.log:not(.all) .wk.old{display:none}
+.log:not(.all) .old{display:none}
 .tld{display:none}
 .relx{border-bottom:1px solid var(--ru)}.relx summary{cursor:pointer;padding:14px 0;font-family:var(--fm);font-size:12px;letter-spacing:.06em;color:var(--mu)}.relx .rel{border-bottom:0;padding-top:0}
 .a2b{grid-template-columns:30px minmax(0,1fr) auto!important;gap:10px!important;padding-top:7px!important;padding-bottom:calc(7px + env(safe-area-inset-bottom))!important}.a2b img{border-radius:7px}
@@ -80,6 +80,19 @@ h1{line-height:.95}h2{line-height:1.05}.twc a.ttl{letter-spacing:-.01em;font-var
 .st,.ol{font-family:var(--fb);font-size:11.5px;font-weight:600;letter-spacing:0;border-radius:999px;padding:1px 8px;vertical-align:1px}
 .st{background:color-mix(in srgb,var(--sk) 55%,var(--sh));color:#4a3418}.ol{border:1px solid var(--ru);background:var(--pa);color:var(--mu)}
 .swh{display:none}
+.log{display:grid;gap:12px;background:none;border:0;border-radius:0;overflow:visible;box-shadow:none}
+.lm{display:flex;align-items:center;gap:12px;margin-top:10px;font-family:var(--fs);font-style:italic;font-size:17px;color:var(--mu)}.lm::after{content:"";flex:1;height:1px;background:var(--ru)}.lm:first-child{margin-top:0}
+.lwk{display:grid;grid-template-columns:130px minmax(0,1fr);gap:18px;align-items:center;background:var(--sh);border:1px solid var(--ru);border-radius:16px;padding:14px 18px;box-shadow:0 1px 0 rgba(90,60,30,.04),0 8px 24px -14px rgba(90,60,30,.18)}
+.lwk.lsw{border-left:5px solid var(--sk)}
+.lwh{display:grid;gap:2px;align-content:center}.lwh b{font-family:var(--fd);font-weight:700;font-size:22px;line-height:1.1;font-variation-settings:"opsz" 48,"SOFT" 80}.lwh span{font-family:var(--fs);font-style:italic;font-size:14px;color:var(--mu)}
+.swt{justify-self:start;margin-top:6px;font-style:normal;font-size:11.5px;font-weight:600;padding:1px 9px;border-radius:999px;background:color-mix(in srgb,var(--sk) 55%,var(--sh));color:#4a3418}
+.lwa{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px 20px}
+.la{display:grid;grid-template-columns:58px minmax(0,1fr);gap:12px;align-items:center;min-width:0}
+.lac{display:block;border-radius:6px}.la .cv{width:58px;height:58px;border-radius:6px}.la .cv.art{box-shadow:0 3px 8px rgba(0,0,0,.2)}
+.lat{display:grid;gap:1px;min-width:0}.la a.ttl{font-weight:600;font-size:16px;line-height:1.25;color:inherit;text-decoration:none}.la a.ttl:hover{color:var(--co);text-decoration:underline;text-underline-offset:3px}
+.la .ar{font-size:14px;color:var(--mu)}.lmt{font-size:12.5px;color:var(--mu);font-variant-numeric:tabular-nums}.lmt b{color:var(--in);font-weight:600}.la .st{display:table;margin:4px 0 0}
+@media (max-width:640px){.lwk{grid-template-columns:1fr;gap:10px;padding:14px}.lwh{grid-template-columns:auto 1fr auto;align-items:baseline;gap:8px}.lwh .swt{margin:0}.la .cv{width:52px;height:52px}.la{grid-template-columns:52px minmax(0,1fr)}}
+
 .catch.short label:nth-child(n+9){display:none}#catchMore{margin-top:12px}
 .ar .st,.ar .ol{display:table;margin:4px 0 0}.twc .ar .st{margin-top:6px}
 @media (max-width:520px){
@@ -306,7 +319,13 @@ H("supers",[["Deepest cut",deep.t,`#${deep.r} is the furthest down the list we'v
 const tag=x=>x.st?`<span class="st">Show &amp; Tell · ${x.st}</span>`:"",
 alb=x=>`<div class="alb"><i class="cv" data-k="${esc(key(x))}"></i><div class="ta"><a class="tt" data-q="${esc(x.t+" "+x.a)}" data-am="${x.am||""}" target="_blank" rel="noopener">${esc(x.t)}</a><span class="ar">${esc(x.a)}${x.st?tag(x):x.off?'<span class="ol">Off-list</span>':""}</span></div><span class="yr">${x.y}</span><span class="rk${x.r?"":" dim"}">${x.r?"#"+x.r:"—"}</span></div>`,
 wk=(c,n,s,a)=>`<div class="wk${c}"><div class="n">${n}<small>${s}</small></div><div class="albums">${a.map(alb).join("")}</div></div>`;
-H("log",Object.keys(groups).sort((a,b)=>b-a).map((w,i)=>wk(i>3?" old":"",+w||"PRE",+w?"WEEK":"APRIL",groups[w])).join(""));{const n=Object.keys(groups).length,lb=$("logMore");lb.hidden=n<=4;lb.textContent=`Show all ${n} weeks`;lb.onclick=()=>{const all=$("log").classList.toggle("all");lb.textContent=all?"Show fewer weeks":`Show all ${n} weeks`;lb.setAttribute("aria-expanded",all);all||$("s-log").scrollIntoView()}}
+{const la=x=>{const q=`data-q="${esc(x.t+" "+x.a)}" data-am="${x.am||""}" target="_blank" rel="noopener"`;return`<div class="la"><a class="tt lac" ${q} tabindex="-1" aria-hidden="true"><i class="cv" data-k="${esc(key(x))}"></i></a><div class="lat"><a class="tt ttl" ${q}>${esc(x.t)}</a><span class="ar">${esc(x.a)}</span><span class="lmt">${x.y}${x.r?` · <b>#${x.r}</b> on the list`:x.st?"":" · off the list"}</span>${x.st?tag(x):""}</div></div>`},
+fmt=d=>d.toLocaleDateString("en-US",{month:"short",day:"numeric"});let lastM="",h="";
+Object.keys(groups).sort((a,b)=>b-a).forEach((w,i)=>{w=+w;const st=wkStart(w),m=w?st.toLocaleDateString("en-US",{month:"long",year:"numeric"}):"April 2026",old=i>3?" old":"",sw=groups[w].some(x=>x.st);
+if(m!==lastM){h+=`<div class="lm${old}"><span>${m}</span></div>`;lastM=m}
+const end=new Date(st);end.setDate(st.getDate()+6);
+h+=`<article class="lwk${old}${sw?" lsw":""}"><header class="lwh"><b>${w?"Week "+w:"Warm-up"}</b><span>${w?fmt(st)+"–"+(end.getMonth()===st.getMonth()?end.getDate():fmt(end)):"before Week 1"}</span>${sw?'<em class="swt">Show &amp; Tell</em>':""}</header><div class="lwa">${groups[w].map(la).join("")}</div></article>`});
+H("log",h)}{const n=Object.keys(groups).length,lb=$("logMore");lb.hidden=n<=4;lb.textContent=`Show all ${n} weeks`;lb.onclick=()=>{const all=$("log").classList.toggle("all");lb.textContent=all?"Show fewer weeks":`Show all ${n} weeks`;lb.setAttribute("aria-expanded",all);all||$("s-log").scrollIntoView()}}
 $("twWhen").textContent=`Week ${NEXT[0].w} · from ${new Date(2026,4,7*NEXT[0].w-3).toLocaleDateString("en-US",{month:"short",day:"numeric"})}`;
 const twCard=x=>{const q=`data-q="${esc(x.t+" "+x.a)}" data-am="${x.am||""}" target="_blank" rel="noopener"`;return`<div class="twc"><a class="tt cvl" ${q} aria-hidden="true" tabindex="-1"><i class="cv" data-k="${esc(key(x))}"></i></a><div class="tx"><a class="tt ttl" ${q}>${esc(x.t)}</a><span class="ar">${esc(x.a)}</span><span class="mt"><span>${x.y}</span>${x.r?`<b>#${x.r} on the list</b>`:x.off?(x.st?tag(x):"<span>Off the list</span>"):""}</span><a class="tt go" ${q}>Listen \u2197</a></div></div>`};
 H("tw",NEXT.map(twCard).join(""));
