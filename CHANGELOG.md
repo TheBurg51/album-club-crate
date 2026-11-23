@@ -1,0 +1,69 @@
+# Changelog
+
+Changes to how the Album Club Crate site works. Weekly album updates, corrections to past weeks and changes to the Show & Tell rotation are data, not features, so they aren't listed here.
+
+The site's own Release notes section shows only the two most recent versions. This file keeps all of them.
+
+## v1.8 · Nov 23, 2026
+
+- **Show & Tell picks gallery:** every off-list pick with its cover, picker and month.
+- **Milestones:** badges for what the club has hit (albums heard, share of the list, top-10 albums) and a progress bar to the next one. When a week pushes the club past a milestone, a banner and confetti celebrate it, once per device.
+- **Album birthdays:** a Fun facts card naming club albums with a release anniversary this week, or the next one coming up. It uses Apple Music release dates only when their year matches the album's original year, so remaster dates are ignored.
+- **Club Wrapped:** a year-in-review card that appears every December and January, with a Share button. Preview it any time with `?wrapped`.
+- **Add to Home Screen:** app icon, name and web app manifest, so the Crate opens like an app from a phone's home screen. A one-line how-to sits above the release notes and hides itself when the page is opened from the home screen.
+- **Fixed:** hidden sections could still show on the GitHub version of the page.
+
+## v1.7 · Nov 23, 2026
+
+- **New home:** the site moved from a claude.ai page to GitHub Pages at https://theburg51.github.io/album-club-crate/. The old page shows a "we moved" banner. People bring their catch-up progress over with Copy my code / Load code.
+- **Album covers** in the log, on the 500 grid and in the catch-up list. Tapping a grid square shows its cover. Covers come from Apple Music in each visitor's browser and are cached there. A search fallback only accepts an exact title, or the title plus an edition note, so it never grabs a different album.
+- **Cover check view:** open the page with `?covers` to see every album's cover and where it came from: Apple Music ID, search match, ID not in the US store, or no cover.
+- **Link preview:** sharing the link shows a preview card (`preview.png`) with progress and this week's albums. `tools/preview.cjs` rebuilds it.
+- **Pick one for me:** a random-album picker in Your crate for people catching up, with a Mark as heard button.
+- **Turntable:** a record you can drag and flick. Dropping the needle plays a 30-second Apple Music preview of a random club album, with a needle thump and vinyl crackle. While it plays, holding the record stops the music and spinning it changes the speed and pitch, with a scratch sound. The record shows an Album Club label until the needle drops.
+- **Layout:**
+  - This week's albums get their own large section at the top.
+  - The Show & Tell banner is a slim strip, with the full rotation folded behind "See the full rotation".
+  - The turntable sits above the log.
+  - The log no longer repeats the current week.
+- **Small things:** a record icon for the browser tab, and the page code trimmed to about 28 KB.
+- **Fixed:**
+  - Turntable audio stuttering, because playback speed was nudged every frame.
+  - The arm lifting before a second album's preview started.
+  - iPhone silent mode muting the turntable's sound effects.
+
+## v1.6 · Nov 3, 2026
+
+- **Move your crate between devices:** copy your code in Your crate and load it on another phone or computer.
+- Album titles and artists use one consistent format throughout.
+- Off-list albums are marked OFF-LIST in the catch-up list.
+- Apple Music links go straight to the album when an Apple Music ID is known.
+
+## v1.5 · Oct 19, 2026
+
+- Album titles in the log link to Spotify or Apple Music. Visitors pick their service at the top of the log and the page remembers it.
+
+## v1.4 · Oct 19, 2026
+
+- **Your crate:** pick the week you joined to get your own catch-up checklist. Hollow squares on the grid show list albums you still have to hear.
+- A release-year timeline, with one dot per album, replaces the decade bars.
+- A projected finish date for the full 500.
+- Release notes on the page. The site started updating weekly on its own.
+
+## v1.3 · Oct 19, 2026
+
+- Album history backfilled for Weeks 1–24 (data only; no feature changes).
+
+## v1.2 · Oct 19, 2026
+
+- **Show & Tell banner:** whose turn is next, and the full rotation by seniority.
+- The April warm-up albums from before Week 1 are part of the log.
+
+## v1.1 · Oct 18, 2026
+
+- The year and rank columns in the log line up.
+- The Show & Tell tag only appears on off-list picks, per the rules.
+
+## v1.0 · Oct 18, 2026
+
+- **Launch:** the 500-slot grid, headline numbers, coverage by list position, fun facts and the week-by-week log.
