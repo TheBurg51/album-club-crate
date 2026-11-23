@@ -167,8 +167,8 @@ const row=([w,t,a,y,r,am,st])=>({w,t,a,y,r:r>0?r:undefined,off:r<0,am,st}), A=R.
 const NEXT=[[29,"Still Bill","Bill Withers",1972,333,"989376986"],[29,"Dirty Mind","Prince",1980,326,"214145168"]].map(row);
 const $=id=>document.getElementById(id);
 const NOTES=[
+{v:"1.7",d:"Nov 23, 2026",items:["The Crate has a new home at theburg51.github.io/album-club-crate. Bring your catch-up progress over with \u201cCopy my code\u201d on the old page and \u201cLoad code\u201d here.","Album covers now show in the log, on the grid and in your catch-up list. Tap a square on the grid to see its cover.","Sharing the link in a group chat now shows a preview card with our progress and what\u2019s up next."]},
 {v:"1.6",d:"Nov 3, 2026",items:["You can now move your crate to another phone or computer: copy your code in the \u201cYour crate\u201d section and load it on the other device."]},
-{v:"1.5",d:"Oct 19, 2026",items:["Album titles in the log now link to Spotify or Apple Music. Pick your service at the top of the log and the page remembers it."]},
 ];
 const picks={Nathan:"Yumeno Garden",Devo:"Coming Home",Neil:"Petals for Armor","George Price":"E. 1999 Eternal","Bryan Bland":"Peripheral Vision",Jerry:"Abandoned Luncheonette"};
 const esc=s=>s.replace(/&/g,"&amp;").replace(/</g,"&lt;"),Q=s=>document.querySelectorAll(s),H=(i,h)=>$(i).innerHTML=h,LF=a=>new Intl.ListFormat("en").format(a),MY={month:"long",year:"numeric"},N=A.length;
