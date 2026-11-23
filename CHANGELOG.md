@@ -12,6 +12,7 @@ The site's own Release notes section shows only the two most recent versions. Th
 - **Club Wrapped:** a year-in-review card that appears every December and January, with a Share button. Preview it any time with `?wrapped`.
 - **Add to Home Screen:** app icon, name and web app manifest, so the Crate opens like an app from a phone's home screen. A bar pinned to the bottom of the screen shows how, tailored to iPhone, Android or desktop, with a one-tap Install button where the browser supports it. It disappears whenever the Crate is opened from the home screen.
 - **Fixed:** hidden sections could still show on the GitHub version of the page.
+- The browser-tab icon has a light rim and lighter grooves in dark mode, so it stands out on dark tab bars.
 
 ## v1.7 · Nov 23, 2026
 
