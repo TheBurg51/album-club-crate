@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Album Club Crate</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>body{margin:0}:root{--pa:#eef0f4;--sh:#ffffff;--in:#18203a;--mu:#5d6580;--ru:#d5d9e3;--co:#2747d6;--sk:#ffcf3a;--em:#dfe3ec;--fd:"Big Shoulders Display",Impact,"Arial Narrow",sans-serif;--fb:"Instrument Sans",system-ui,-apple-system,sans-serif;--fm:"IBM Plex Mono",ui-monospace,Menlo,monospace;}@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--pa:#0f1424;--sh:#171e33;--in:#e8ebf5;--mu:#99a1bc;--ru:#2a3350;--co:#7d93ff;--sk:#ffd54d;--em:#222b45;color-scheme:dark}}:root[data-theme=dark]{--pa:#0f1424;--sh:#171e33;--in:#e8ebf5;--mu:#99a1bc;--ru:#2a3350;--co:#7d93ff;--sk:#ffd54d;--em:#222b45;color-scheme:dark}*{box-sizing:border-box}body{background:var(--pa);color:var(--in);font-family:var(--fb);font-size:15px;line-height:1.55}.wrap{max-width:1040px;margin:0 auto;padding-block:32px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:40px}h1,h2{font-family:var(--fd);font-weight:900;text-transform:uppercase;letter-spacing:.01em;line-height:.92;margin:0;text-wrap:balance}h1{font-size:clamp(52px,11vw,112px)}h2{font-size:clamp(28px,5vw,40px)}.eyebrow{font-family:var(--fm);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--mu)}.mast{display:grid;gap:14px;position:relative}.mast p{max-width:62ch;margin:0;color:var(--mu)}.sticker{position:absolute;right:0;top:4px;background:var(--sk);color:#18203a;width:118px;height:118px;border-radius:50%;display:grid;place-items:center;text-align:center;transform:rotate(9deg);font-family:var(--fd);font-weight:900;line-height:.9;font-size:40px;box-shadow:0 2px 0 rgba(0,0,0,.12)}.sticker small{display:block;font-family:var(--fm);font-size:10px;font-weight:500;letter-spacing:.08em;margin-top:4px}@media (max-width:640px){.sticker{position:static;width:96px;height:96px;font-size:32px;transform:rotate(-6deg)}}.section{display:grid;gap:16px}.head{display:flex;justify-content:space-between;align-items:end;gap:12px;flex-wrap:wrap}.panel{background:var(--sh);border:1px solid var(--ru);border-radius:6px;padding:20px}.crate{display:grid;grid-template-columns:repeat(25,1fr);gap:3px}.cell{aspect-ratio:1;border-radius:2px;background:var(--em);border:0;padding:0;cursor:default;max-width:100%}.cell.on{cursor:pointer;background:var(--co)}.cell.recent{background:var(--sk)}.cell.next{background:transparent;outline:2px dashed var(--co);outline-offset:-2px;cursor:pointer}.cell:focus-visible{outline:2px solid var(--in);outline-offset:1px}.crate-foot{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;justify-content:space-between;margin-top:14px}.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13px;color:var(--mu)}.legend span{display:inline-flex;align-items:center;gap:6px}.sw{width:11px;height:11px;border-radius:2px;display:inline-block}.readout{font-family:var(--fm);font-size:13px;min-height:1.5em}.axis{display:flex;justify-content:space-between;font-family:var(--fm);font-size:11px;color:var(--mu);margin-top:6px}.nums{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}.num{padding:16px;background:var(--sh);border:1px solid var(--ru);border-radius:6px;display:grid;gap:2px}.num b{font-family:var(--fd);font-weight:900;font-size:46px;line-height:1;font-variant-numeric:tabular-nums}.num span{font-size:13px;color:var(--mu)}.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}@media (max-width:760px){.two{grid-template-columns:1fr}}.two>*{min-width:0}.rows{display:grid;gap:8px}.drow{display:grid;grid-template-columns:72px 1fr 54px;gap:10px;align-items:center;font-family:var(--fm);font-size:13px}.track{height:14px;background:var(--em);border-radius:2px;overflow:hidden}.track i{display:block;height:100%;background:var(--co)}.drow b{text-align:right;font-weight:500;font-variant-numeric:tabular-nums}.sub{font-size:13px;color:var(--mu);margin:0}.supers{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}.sup{background:var(--sh);border:1px solid var(--ru);border-radius:6px;padding:16px;display:grid;gap:4px;align-content:start}.sup .k{font-family:var(--fm);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mu)}.sup .t{font-weight:600;font-size:16px;line-height:1.3}.sup .d{font-size:13px;color:var(--mu)}.log{display:grid;background:var(--sh);border:1px solid var(--ru);border-radius:6px;overflow:hidden}.wk{display:grid;grid-template-columns:64px 1fr;border-top:1px solid var(--ru)}.wk:first-child{border-top:0}.wk .n{font-family:var(--fd);font-weight:900;font-size:30px;padding:12px 0 0 14px;color:var(--mu);line-height:1}.wk .n small{display:block;font-family:var(--fm);font-size:10px;font-weight:500;letter-spacing:.1em}.albums{display:grid;min-width:0}.alb{display:grid;grid-template-columns:minmax(0,1fr) 44px 64px;gap:12px;padding:10px 14px 10px 0;align-items:baseline}.alb .yr,.alb .rk{font-family:var(--fm);font-size:12px;color:var(--mu);text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}.alb .rk{color:var(--in);font-weight:500}.alb .rk.dim{color:var(--mu);font-weight:400}.alb+.alb{border-top:1px dashed var(--ru)}.alb>div{min-width:0}.svc{display:flex;flex-wrap:wrap;align-items:center;gap:6px}.svc button{font:inherit;font-size:13px;font-weight:600;padding:6px 12px;border-radius:999px;border:1.5px solid var(--ru);background:var(--sh);color:var(--in);cursor:pointer}.svc button[aria-pressed=true]{background:var(--in);border-color:var(--in);color:var(--pa)}.svc button:focus-visible{outline:2px solid var(--co);outline-offset:2px}
+.alb .tt{font-weight:600;color:inherit;text-decoration:underline;text-decoration-color:var(--ru);text-underline-offset:3px}.alb a.tt:hover{color:var(--co);text-decoration-color:var(--co)}.ta{display:grid;gap:1px;min-width:0}.ol{font-family:var(--fm);font-size:10px;padding:0 5px;border:1px solid var(--mu);border-radius:2px;margin-left:6px;color:var(--mu);letter-spacing:.06em;vertical-align:1px;white-space:nowrap}.ta .tt{font-weight:600}.ta .ar{font-size:13px;color:var(--mu)}.st{background:var(--sk);color:#18203a;font-family:var(--fm);font-size:10px;padding:1px 6px;border-radius:2px;margin-left:6px;letter-spacing:.06em;vertical-align:2px;white-space:nowrap}.wk.next{background:color-mix(in srgb,var(--co) 8%,var(--sh))}.wk.next .n{color:var(--co)}.snt{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:20px 28px;align-items:center;background:var(--sk);color:#18203a;border-radius:6px;padding:22px 24px}@media (max-width:760px){.snt{grid-template-columns:1fr}}.snt .eyebrow{color:#18203a;opacity:.75}.snt h2{font-size:clamp(40px,7vw,64px)}.snt p{margin:6px 0 0;font-size:14px;max-width:44ch}.rot{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:6px}.rot li{border:1.5px solid rgba(24,32,58,.35);border-radius:4px;padding:6px 9px;display:grid;gap:0;min-width:0}.rot .who{font-weight:600;font-size:14px;line-height:1.25}.rot .when{font-family:var(--fm);font-size:11px;opacity:.75;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.rot li.done{opacity:.5;border-style:dashed}.rot li.now{background:#18203a;color:var(--sk);border-color:#18203a}.rot li.now .when{opacity:1}.mine{display:grid;gap:16px}.xfer{display:grid;gap:8px}.xrow{display:flex;flex-wrap:wrap;gap:8px}.xrow input{flex:1 1 180px;min-width:0;font:inherit;font-size:14px;padding:7px 10px;border:1px solid var(--ru);border-radius:4px;background:var(--sh);color:var(--in)}.xb{font:inherit;font-size:13px;font-weight:600;padding:7px 12px;border-radius:4px;border:1.5px solid var(--in);background:transparent;color:var(--in);cursor:pointer}.xb:focus-visible,.xrow input:focus-visible{outline:2px solid var(--co);outline-offset:2px}.mine-top{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:end;justify-content:space-between}.field{display:grid;gap:4px}.field label{font-family:var(--fm);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mu)}select{font:inherit;font-size:15px;padding:8px 10px;border:1px solid var(--ru);border-radius:4px;background:var(--sh);color:var(--in);max-width:100%}select:focus-visible,.catch input:focus-visible{outline:2px solid var(--co);outline-offset:2px}.mine-sum{font-size:15px;max-width:64ch;margin:0}.mine-sum b{font-variant-numeric:tabular-nums}.catch{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:0 20px}.catch label{display:grid;grid-template-columns:18px minmax(0,1fr) auto;gap:10px;align-items:baseline;padding:7px 0;border-top:1px dashed var(--ru);font-size:14px;cursor:pointer}.catch input{accent-color:var(--co);margin:0;width:15px;height:15px;transform:translateY(2px)}.catch .rk{font-family:var(--fm);font-size:12px;color:var(--mu);white-space:nowrap}.catch input:checked+span{color:var(--mu);text-decoration:line-through}.cell.missed{background:transparent;box-shadow:inset 0 0 0 2px var(--co)}.tl{display:grid;grid-template-columns:repeat(70,minmax(0,1fr));align-items:end;column-gap:1px;min-height:60px}.tl .yc{display:flex;flex-direction:column-reverse;align-items:center;gap:2px}.tl .d{width:100%;max-width:9px;aspect-ratio:1;border-radius:50%;background:var(--co);border:0;padding:0;cursor:pointer}.tl .d.off{background:transparent;box-shadow:inset 0 0 0 1.5px var(--co)}.tl .d:focus-visible{outline:2px solid var(--in);outline-offset:1px}.tl-ax{display:grid;grid-template-columns:repeat(7,1fr);font-family:var(--fm);font-size:11px;color:var(--mu);border-top:1px solid var(--ru);padding-top:4px;margin-top:4px}.notes{display:grid;gap:0;border-top:1px solid var(--ru)}.rel{display:grid;grid-template-columns:120px minmax(0,1fr);gap:4px 20px;padding:14px 0;border-bottom:1px solid var(--ru)}@media (max-width:560px){.rel{grid-template-columns:1fr}}.rel .v{font-family:var(--fm);font-size:12px;color:var(--mu);display:grid;align-content:start}.rel .v b{font-family:var(--fd);font-weight:900;font-size:22px;color:var(--in);line-height:1.1}.rel ul{margin:0;padding-left:18px;display:grid;gap:4px;font-size:14px}.fuzzy{font-size:14px;color:var(--mu);max-width:68ch;margin:0}.fuzzy b{color:var(--in)}@media (prefers-reduced-motion:no-preference){.cell.on{transition:transform .12s}.cell.on:hover{transform:scale(1.35)}}</style>
+</head>
+<body>
+<div class="wrap">
+<header class="mast">
+<div class="eyebrow">Album of the Week Club · Rolling Stone 500 (2023 edition)</div>
+<h1>The Crate<br>So Far</h1>
+<p id="lede"></p>
+<div class="sticker" aria-hidden="true"><div><span id="stickerPct"></span><small>OF THE 500</small></div></div>
+</header>
+<section class="snt" aria-labelledby="sntH">
+<div>
+<div class="eyebrow" id="sntWhen"></div>
+<h2 id="sntH"></h2>
+<p>Show &amp; Tell happens the first week of each month: one album that isn't on the list, picked by whoever's turn it is. Turns go by seniority.</p>
+</div>
+<ol class="rot" id="rot" aria-label="Show and Tell rotation"></ol>
+</section>
+<section class="panel mine" aria-labelledby="mineH">
+<div class="mine-top">
+<h2 id="mineH">Your crate</h2>
+<div class="field"><label for="joinSel">I joined the club</label><select id="joinSel"></select></div>
+</div>
+<p class="mine-sum" id="mineSum"></p>
+<div id="catchWrap" hidden>
+<div class="track" style="margin-bottom:10px"><i id="catchBar" style="width:0"></i></div>
+<div class="catch" id="catch"></div>
+</div>
+<div class="xfer"><p class="sub">Your picks are saved in this browser only. To move them to another phone or computer, copy your code here and load it there.</p><div class="xrow"><input id="code" type="text" aria-label="Your crate code" placeholder="Paste a code here" autocomplete="off"><button type="button" class="xb" id="cpy">Copy my code</button><button type="button" class="xb" id="ld">Load code</button></div><span class="sub" id="xmsg" aria-live="polite"></span></div>
+</section>
+<section class="section" aria-labelledby="crateH">
+<div class="head"><h2 id="crateH">Every slot on the list</h2><span class="eyebrow">#1 top left → #500 bottom right</span></div>
+<div class="panel">
+<div class="crate" id="crate" aria-label="Rolling Stone 500 grid"></div>
+<div class="axis"><span>#1</span><span>#250</span><span>#500</span></div>
+<div class="crate-foot">
+<div class="legend">
+<span><i class="sw" style="background:var(--co)"></i>Listened</span>
+<span><i class="sw" style="background:var(--sk)"></i>Last week</span>
+<span><i class="sw" style="outline:2px dashed var(--co);outline-offset:-2px"></i>Up next</span>
+<span id="lgMissed" hidden><i class="sw" style="box-shadow:inset 0 0 0 2px var(--co)"></i>Yours to catch up on</span>
+<span><i class="sw" style="background:var(--em)"></i>Still waiting</span>
+</div>
+<div class="readout" id="readout" aria-live="polite">Tap a lit square to see the album.</div>
+</div>
+</div>
+</section>
+<section class="nums" id="nums" aria-label="Headline numbers"></section>
+<section class="two">
+<div class="panel section">
+<h2>By list position</h2>
+<p class="sub">How much of each hundred we've covered.</p>
+<div class="rows" id="bands"></div>
+</div>
+<div class="panel section">
+<h2>By release year</h2>
+<p class="sub">One dot per album, 1960 to today. Hollow dots are off the list.</p>
+<div><div class="tl" id="tl"></div><div class="tl-ax"><span>60s</span><span>70s</span><span>80s</span><span>90s</span><span>00s</span><span>10s</span><span>20s</span></div></div>
+<div class="readout" id="tlRead" aria-live="polite">Tap a dot to see the album.</div>
+</div>
+</section>
+<section class="section">
+<h2>Fun facts</h2>
+<div class="supers" id="supers"></div>
+</section>
+<section class="section">
+<div class="head"><h2>The log</h2><div class="svc" role="group" aria-label="Open albums in"><span class="eyebrow">Open albums in</span><button type="button" data-svc="spotify" aria-pressed="true">Spotify</button><button type="button" data-svc="apple" aria-pressed="false">Apple Music</button></div></div>
+<div class="log" id="log"></div>
+<p class="fuzzy"><b>Lost weeks.</b> <span id="lost"></span> missing from the records. If you remember what we played, speak up and they'll get added.</p>
+</section>
+<section class="section" aria-labelledby="relH">
+<div class="head"><h2 id="relH">Release notes</h2><span class="eyebrow">What's changed on this page</span></div>
+<div class="notes" id="notes"></div>
+</section>
+</div>
+<script type="application/json" id="rotData">{"rot":["Nathan","Devo","Neil","George Price","Bryan Bland","Jerry","Arianne","Noah","Murt","Peter","Eric Sanford","Curtis","Emmit","Genevieve","Cole","Maggie","Anissa"],"next":6,"nextMonth":"2026-12"}</script>
+<script>
+// album rows: [week,title,artist,year,rank (0 = rank unknown, -1 = off the list),appleMusicId,showTellPicker]
+const R=[
+[0,"3 Feet High and Rising","De La Soul",1989,103,"1673853423"],
+[0,"Time (The Revelator)","Gillian Welch",2001,348,"79765126"],
+[0,"Marquee Moon","Television",1977,107,"1049069472"],
+[0,"Baduizm","Erykah Badu",1997,89,"1440837269"],
+[0,"Dummy","Portishead",1994,131,"1440653096"],
+[1,"What's Going On","Marvin Gaye",1971,1],
+[1,"Live Through This","Hole",1994,106,"1445732603"],
+[2,"Aquemini","OutKast",1998,49,"1536669507"],
+[2,"Rumours","Fleetwood Mac",1977,7],
+[3,"Violator","Depeche Mode",1990,167,"665404621"],
+[3,"Siamese Dream","The Smashing Pumpkins",1993,341,"721207206"],
+[3,"The Miseducation of Lauryn Hill","Lauryn Hill",1998,10],
+[4,"Discovery","Daft Punk",2001,236,"697194953"],
+[4,"Yumeno Garden","Last Dinosaurs",2018,-1,"","Nathan"],
+[4,"Is This It","The Strokes",2001,114,"266376953"],
+[5,"Blue","Joni Mitchell",1971,3,"1492263092"],
+[5,"Channel Orange","Frank Ocean",2012,148,"1440765580"],
+[6,"The Modern Lovers","The Modern Lovers",1976,288],
+[6,"xx","The xx",2009,0,"1849107580"],
+[7,"Homework","Daft Punk",1997,0,"696884422"],
+[7,"There's a Riot Goin' On","Sly and the Family Stone",1971,82,"1501778712"],
+[8,"Coming Home","Leon Bridges",2015,-1,"1079234232","Devo"],
+[8,"The Velvet Underground & Nico","The Velvet Underground",1967,23,"1431071111"],
+[9,"London Calling","The Clash",1979,16],
+[9,"Straight Outta Compton","N.W.A",1988,70,"1440816032"],
+[10,"good kid, m.A.A.d city","Kendrick Lamar",2012,115,"1471277623"],
+[10,"Kid A","Radiohead",2000,20,"1097862870"],
+[11,"Stankonia","OutKast",2000,64,"1536616104"],
+[11,"Mezzanine","Massive Attack",1998,383,"724466069"],
+[12,"Late Registration","Kanye West",2005,117,"1440668749"],
+[12,"Elephant","The White Stripes",2003,449,"1533513536"],
+[13,"Paul's Boutique","Beastie Boys",1989,125,"721276795"],
+[13,"Sound of Silver","LCD Soundsystem",2007,433],
+[14,"E. 1999 Eternal","Bone Thugs-N-Harmony",1995,-1,"","George"],
+[14,"Midnight Marauders","A Tribe Called Quest",1993,201,"265670545"],
+[14,"Mothership Connection","Parliament",1975,363,"1440837684"],
+[15,"Sublime","Sublime",1996,0],
+[15,"Songs in the Key of Life","Stevie Wonder",1976,4,"1440788438"],
+[16,"Cross","Justice",2007,-1],
+[16,"Aja","Steely Dan",1977,63],
+[17,"Disintegration","The Cure",1989,116],
+[17,"Voodoo","D'Angelo",2000,28,"1440841365"],
+[18,"Petals for Armor","Hayley Williams",2020,-1,"1511028064","Neil"],
+[18,"Doolittle","Pixies",1989,141,"7060469"],
+[19,"Third","Portishead",2008,-1,"1440633834"],
+[19,"Innervisions","Stevie Wonder",1973,34,"1440806790"],
+[20,"In Rainbows","Radiohead",2007,387,"1109714933"],
+[20,"Liquid Swords","GZA",1995,347],
+[21,"Homogenic","Björk",1997,202,"20833577"],
+[21,"Superunknown","Soundgarden",1994,-1,"1440811129"],
+[22,"Peripheral Vision","Turnover",2015,-1,"","Bryan"],
+[22,"Demon Days","Gorillaz",2005,437],
+[23,"Power, Corruption & Lies","New Order",1983,262,"1040981945"],
+[23,"Madvillainy","Madvillain",2004,365,"887699504"],
+[24,"Trans Europe Express","Kraftwerk",1977,238,"726144557"],
+[24,"Remain in Light","Talking Heads",1980,39,"300948043"],
+[25,"Yankee Hotel Foxtrot","Wilco",2002,225,"300981120"],
+[25,"Odelay","Beck",1996,424,"1440871815"],
+[26,"Heaven or Las Vegas","Cocteau Twins",1990,245,"258198881"],
+[26,"Things Fall Apart","The Roots",1999,416,"1440632803"],
+[27,"Abandoned Luncheonette","Hall & Oates",1973,-1,"332663733","Jerry"],
+[27,"Diamond Life","Sade",1984,200,"211429791"],
+[28,"Curtis","Curtis Mayfield",1970,275,"298673199"],
+[28,"Dig Me Out","Sleater-Kinney",1997,189,"906136610"]
+];
+const row=([w,t,a,y,r,am,st])=>({w,t,a,y,r:r>0?r:undefined,off:r<0,am,st}), A=R.map(row);
+const NEXT=[[29,"Still Bill","Bill Withers",1972,333,"989376986"],[29,"Dirty Mind","Prince",1980,326,"214145168"]].map(row);
+const $=id=>document.getElementById(id);
+const NOTES=[
+{v:"1.6",d:"Nov 3, 2026",items:["You can now move your crate to another phone or computer: copy your code in the \u201cYour crate\u201d section and load it on the other device."]},
+{v:"1.5",d:"Oct 19, 2026",items:["Album titles in the log now link to Spotify or Apple Music. Pick your service at the top of the log and the page remembers it."]},
+];
+const picks={Nathan:"Yumeno Garden",Devo:"Coming Home",Neil:"Petals for Armor","George Price":"E. 1999 Eternal","Bryan Bland":"Peripheral Vision",Jerry:"Abandoned Luncheonette"};
+const esc=s=>s.replace(/&/g,"&amp;").replace(/</g,"&lt;"),Q=s=>document.querySelectorAll(s),H=(i,h)=>$(i).innerHTML=h,LF=a=>new Intl.ListFormat("en").format(a),MY={month:"long",year:"numeric"},N=A.length;
+const lastWeek=Math.max(...A.map(x=>x.w)),L=A.filter(x=>!x.off),snt=A.filter(x=>x.st),weeks=new Set(A.filter(x=>x.w).map(x=>x.w)).size;
+const RD=JSON.parse($("rotData").textContent),ROT=RD.rot,NI=RD.next,[nY,nM]=RD.nextMonth.split("-").map(Number),mon=i=>new Date(nY,nM-1+i,1).toLocaleDateString("en-US",MY);
+$("sntWhen").textContent="Show & Tell · next up · first week of "+mon(0);
+$("sntH").textContent=ROT[NI]+"'s pick";
+H("rot",ROT.map((p,i)=>{const o=i-NI,w=o<0?(picks[p]?"Picked "+picks[p]:"Done"):o?mon(o):"Up next · "+mon(0).split(" ")[0];return`<li class="${o<0?"done":o?"":"now"}"><span class="who">${i+1}. ${p}</span><span class="when" title="${w}">${w}</span></li>`}).join(""));
+const ranked=L.filter(x=>x.r),fD=new Date(2026,9+Math.ceil((500-L.length)/(2*52/12-1)),1);
+$("stickerPct").textContent=(L.length/5).toFixed(1)+"%";
+$("lede").textContent=`${N} albums across ${weeks} logged weeks plus a warm-up, ${L.length} of them from the list. At this pace we'll reach the end of the 500 around ${fD.toLocaleDateString("en-US",MY)}.`;
+const byR=new Map(ranked.map(x=>[x.r,x])),nR=new Map(NEXT.map(x=>[x.r,x])),cellOf=new Map(),el=t=>document.createElement(t);
+const btn=(c,s,o)=>{const b=el("button");b.type="button";b.className=c;s?(b.setAttribute("aria-label",s),b.onclick=b.onmouseenter=b.onfocus=()=>o.textContent=s):(b.tabIndex=-1,b.setAttribute("aria-hidden","true"));return b};
+for(let i=1;i<=500;i++){const x=byR.get(i),n=nR.get(i),b=btn("cell"+(x?" on"+(x.w==lastWeek?" recent":""):n?" next":""),x?`#${i} · ${x.t} — ${x.a} (${x.y}) · ${x.w?"week "+x.w:"warm-up"}`:n&&`#${i} · ${n.t} — ${n.a} (${n.y}) · up next`,$("readout"));x&&cellOf.set(x.t,b);$("crate").append(b)}
+const top10=ranked.filter(x=>x.r<=10).length,cnt={},yc={},groups={};
+A.forEach(x=>{cnt[x.a]=(cnt[x.a]||0)+1;yc[x.y]=(yc[x.y]||0)+1;(groups[x.w]=groups[x.w]||[]).push(x)});
+H("nums",[[N,"albums heard"],[weeks,"weeks logged"],[500-L.length,"list albums to go"],[top10+"/10","of the top 10 done"],[Object.keys(cnt).length,"different artists"],[Math.round(A.reduce((s,x)=>s+x.y,0)/N),"average release year"],[fD.getFullYear(),"projected finish year"]].map(([b,s])=>`<div class="num"><b>${b}</b><span>${s}</span></div>`).join(""));
+let h="";for(let lo=1;lo<500;lo+=100){const c=ranked.filter(x=>x.r>=lo&&x.r<lo+100).length;h+=`<div class="drow"><span>${lo}–${lo+99}</span><div class="track"><i style="width:${c}%"></i></div><b>${c}/100</b></div>`}H("bands",h);
+for(let y=1960;y<2030;y++){const c=el("div");c.className="yc";A.filter(x=>x.y==y).forEach(x=>{const s=`${x.y} · ${x.t} — ${x.a}`,d=btn("d"+(x.off?" off":""),s,$("tlRead"));d.title=s;c.append(d)});$("tl").append(c)}
+const deep=ranked.reduce((m,x)=>x.r>m.r?x:m),nw=A.reduce((m,x)=>x.y>m.y?x:m),tY=Object.keys(yc).reduce((m,y)=>yc[y]>yc[m]?y:m),yA=A.filter(x=>x.y==tY);
+H("supers",[["Deepest cut",deep.t,`#${deep.r} is the furthest down the list we've gone.`],["Top-10 tally",top10+" of 10","What's Going On, Blue, Songs in the Key of Life, Rumours and Miseducation."],["Repeat artists",LF(Object.keys(cnt).filter(a=>cnt[a]>1)),"Artists we've heard more than one album from."],["Most common year",tY,`${yA.length} albums: ${yA.map(x=>x.a).join(", ")}.`],["Newest album",`${nw.t} (${nw.y})`,nw.off?"Not on the list. The newest list albums are from 2012.":"Straight off the list."],["Show & Tell picks",snt.length+" so far","Picked by "+LF(snt.map(x=>x.st))+"."]].map(([k,t,d])=>`<div class="sup"><span class="k">${k}</span><span class="t">${esc(t)}</span><span class="d">${esc(d)}</span></div>`).join(""));
+const tag=x=>x.st?`<span class="st">SHOW &amp; TELL · ${x.st.toUpperCase()}</span>`:"",
+alb=x=>`<div class="alb"><div class="ta"><a class="tt" data-q="${esc(x.t+" "+x.a)}" data-am="${x.am||""}" target="_blank" rel="noopener">${esc(x.t)}</a><span class="ar">${esc(x.a)}${tag(x)}</span></div><span class="yr">${x.y}</span><span class="rk${x.r?"":" dim"}">${x.r?"#"+x.r:x.off?"off-list":"—"}</span></div>`,
+wk=(c,n,s,a)=>`<div class="wk${c}"><div class="n">${n}<small>${s}</small></div><div class="albums">${a.map(alb).join("")}</div></div>`;
+H("log",wk(" next",NEXT[0].w,"NEXT",NEXT)+Object.keys(groups).sort((a,b)=>b-a).map(w=>wk("",+w||"PRE",+w?"WEEK":"APRIL",groups[w])).join(""));
+H("notes",NOTES.map(n=>`<div class="rel"><div class="v"><b>v${n.v}</b>${n.d}</div><ul>${n.items.map(i=>`<li>${esc(i)}</li>`).join("")}</ul></div>`).join(""));
+const store={get(k,d){try{const v=localStorage.getItem(k);return v===null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const SVC={spotify:"Spotify",apple:"Apple Music"},sb=Q(".svc button");
+function setSvc(s){SVC[s]||(s="spotify");store.set("ac.svc",s);sb.forEach(b=>b.setAttribute("aria-pressed",b.dataset.svc==s));Q("a.tt").forEach(a=>{const m=a.dataset.am,q=encodeURIComponent(a.dataset.q);a.href=s=="apple"?(m?"https://music.apple.com/us/album/"+m:"https://www.google.com/search?q=site%3Amusic.apple.com%2Fus%2Falbum+"+q):"https://open.spotify.com/search/"+q;a.title="Find on "+SVC[s]})}
+sb.forEach(b=>b.onclick=()=>setSvc(b.dataset.svc));setSvc(store.get("ac.svc","spotify"));
+const sel=$("joinSel"),NW=NEXT[0].w;
+sel.innerHTML='<option value="">Pick a week</option><option value="0">Day one (I did the April warm-up)</option>'+Array.from({length:NW},(_,i)=>`<option value="${++i}">Week ${i} · ${new Date(2026,4,7*i-3).toLocaleDateString("en-US",{month:"short",day:"numeric"})}${i==NW?" (this week)":""}</option>`).join("");
+let join=store.get("ac.join",null),caught=new Set(store.get("ac.caught",[]));
+if(join!==null)sel.value=join;
+const missedAll=()=>join===null?[]:A.filter(x=>x.w<join),save=()=>{store.set("ac.join",join);store.set("ac.caught",[...caught])},redo=()=>{buildList();paint()};
+function paint(){const m=missedAll(),left=m.filter(x=>!caught.has(x.t)),done=m.length-left.length;
+cellOf.forEach(b=>b.classList.remove("missed"));left.forEach(x=>cellOf.get(x.t)?.classList.add("missed"));
+$("lgMissed").hidden=!left.length;$("catchBar").style.width=m.length?done/m.length*100+"%":"0";$("catchWrap").hidden=!m.length;
+$("mineSum").innerHTML=join===null?"New to the club, or catching up? Pick the week you joined and this section turns into your own catch-up list.":m.length?`The club heard <b>${m.length}</b> albums before you joined, and you've caught up on <b>${done}</b> of them. That puts you at <b>${N-left.length}</b> of the club's ${N}.`+(left.length?" Hollow squares on the grid are the list albums you still have to hear.":" You're fully caught up."):`You've been here for all <b>${N}</b> albums. Nothing to catch up on.`}
+function buildList(){H("catch",missedAll().map((x,i)=>`<label for="cu${i}"><input type="checkbox" id="cu${i}" data-t="${esc(x.t)}"${caught.has(x.t)?" checked":""}><span class="ta"><span class="tt">${esc(x.t)}</span><span class="ar">${esc(x.a)}${x.st?tag(x):x.off?'<span class="ol">OFF-LIST</span>':""}</span></span><span class="rk">${x.w?"wk "+x.w:"April"}</span></label>`).join(""))}
+$("catch").onchange=e=>{const t=e.target.dataset.t;if(t){e.target.checked?caught.add(t):caught.delete(t);save();paint()}};
+sel.onchange=()=>{join=sel.value===""?null:+sel.value;save();redo()};
+redo();
+const xm=$("xmsg"),ci=$("code"),sm="Your code is selected in the box. Copy it, then load it on your other device.";
+$("cpy").onclick=()=>{const c=btoa(unescape(encodeURIComponent(JSON.stringify({j:join,c:[...caught]})))),p=navigator.clipboard?.writeText(c);ci.value=c;ci.select();p?p.then(()=>xm.textContent="Code copied. Paste it into this page on your other device and tap Load code.",()=>xm.textContent=sm):xm.textContent=sm};
+$("ld").onclick=()=>{try{const d=JSON.parse(decodeURIComponent(escape(atob(ci.value.trim()))));join=d.j??null;caught=new Set(d.c||[]);save();sel.value=join??"";redo();xm.textContent=`Loaded. You've ticked off ${caught.size} catch-up album${caught.size==1?"":"s"}.`}catch(e){xm.textContent="That code didn't work. Copy the whole code from your other device and try again."}};
+const lost=[];for(let w=1;w<lastWeek;w++)groups[w]||lost.push(w);
+$("lost").closest("p").hidden=!lost.length;
+if(lost.length)$("lost").textContent=lost.length>1?`Weeks ${lost.slice(0,-1).join(", ")} and ${lost.at(-1)} are`:`Week ${lost[0]} is`;
+</script>
+
+</body>
+</html>
