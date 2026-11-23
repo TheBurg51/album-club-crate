@@ -357,6 +357,9 @@ if(xs.length)try{const d=await jsonp("https://itunes.apple.com/lookup?id="+xs.ma
 $("ahF").onsubmit=e=>{e.preventDefault();$("ahM").textContent="Unlocking…";unlock($("ahP").value)};
 $("ahLock").onclick=()=>{try{localStorage.removeItem("ac.ahead")}catch(e){}$("ahP").value="";$("ahF").hidden=false;$("ahLock").hidden=true;H("ahL","");$("ahM").textContent="Locked."};
 const saved=store.get("ac.ahead","");saved?unlock(saved,true):$("ahM").textContent="Enter the passphrase to see what’s coming up.";setTimeout(()=>sec.scrollIntoView(),60)})();
+// progress handed over from the old claude.ai page: ?code=<crate code> loads it once, then the link is cleaned up
+(()=>{const c=new URLSearchParams(location.search).get("code");if(!c)return;try{const d=JSON.parse(decodeURIComponent(escape(atob(c))));if(d.j!=null)join=d.j;(d.c||[]).forEach(t=>caught.add(t));save();sel.value=join??"";redo();xm.textContent=`Welcome to the new Crate! Your progress came with you${caught.size?`: ${caught.size} catch-up album${caught.size===1?"":"s"} ticked off`:""}.`;setTimeout(()=>$("mineH").scrollIntoView({behavior:"smooth"}),300)}catch(e){}
+const u=new URL(location.href);u.searchParams.delete("code");history.replaceState(null,"",u.pathname+u.search+u.hash)})();
 const lost=[];for(let w=1;w<lastWeek;w++)groups[w]||lost.push(w);
 $("lost").closest("p").hidden=!lost.length;
 if(lost.length)$("lost").textContent=lost.length>1?`Weeks ${lost.slice(0,-1).join(", ")} and ${lost.at(-1)} are`:`Week ${lost[0]} is`;
