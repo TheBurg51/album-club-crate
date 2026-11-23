@@ -229,7 +229,7 @@ const SVC={spotify:"Spotify",apple:"Apple Music"},sb=Q(".svc button");
 function setSvc(s){SVC[s]||(s="spotify");store.set("ac.svc",s);sb.forEach(b=>b.setAttribute("aria-pressed",b.dataset.svc==s));Q("a.tt").forEach(a=>{const m=a.dataset.am,q=encodeURIComponent(a.dataset.q);a.href=s=="apple"?(m?"https://music.apple.com/us/album/"+m:"https://www.google.com/search?q=site%3Amusic.apple.com%2Fus%2Falbum+"+q):"https://open.spotify.com/search/"+q;a.title="Find on "+SVC[s]});Q("a.go").forEach(a=>a.textContent="Listen on "+SVC[s]+" \u2197")}
 sb.forEach(b=>b.onclick=()=>setSvc(b.dataset.svc));setSvc(store.get("ac.svc","spotify"));
 const sel=$("joinSel"),NW=NEXT[0].w;
-sel.innerHTML='<option value="">Pick a week</option><option value="0">Day one (I did the April warm-up)</option>'+Array.from({length:NW},(_,i)=>`<option value="${++i}">Week ${i} · ${new Date(2026,4,7*i-3).toLocaleDateString("en-US",{month:"short",day:"numeric"})}${i==NW?" (this week)":""}</option>`).join("");
+sel.innerHTML='<option value="">Pick a week</option>'+Array.from({length:NW},(_,i)=>{i=NW-i;return`<option value="${i}">Week ${i} · ${new Date(2026,4,7*i-3).toLocaleDateString("en-US",{month:"short",day:"numeric"})}${i==NW?" (this week)":""}</option>`}).join("")+'<option value="0">Day one (I did the April warm-up)</option>';
 let join=store.get("ac.join",null),caught=new Set(store.get("ac.caught",[]));
 if(join!==null)sel.value=join;
 const missedAll=()=>join===null?[]:A.filter(x=>x.w<join),save=()=>{store.set("ac.join",join);store.set("ac.caught",[...caught])},redo=()=>{buildList();paint()};
