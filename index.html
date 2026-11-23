@@ -163,11 +163,11 @@ const R=[
 [26,"Things Fall Apart","The Roots",1999,416,"1440632803"],
 [27,"Abandoned Luncheonette","Hall & Oates",1973,-1,"332663733","Jerry"],
 [27,"Diamond Life","Sade",1984,200,"211429791"],
-[28,"Curtis","Curtis Mayfield",1970,275,"298673199"],
+[28,"Curtis","Curtis Mayfield",1970,275,"29168201"],
 [28,"Dig Me Out","Sleater-Kinney",1997,189,"906136610"]
 ];
 const row=([w,t,a,y,r,am,st])=>({w,t,a,y,r:r>0?r:undefined,off:r<0,am,st}), A=R.map(row);
-const NEXT=[[29,"Still Bill","Bill Withers",1972,333,"989376986"],[29,"Dirty Mind","Prince",1980,326,"214145168"]].map(row);
+const NEXT=[[29,"Still Bill","Bill Withers",1972,333,"989376986"],[29,"Dirty Mind","Prince",1980,326,"1544296643"]].map(row);
 const $=id=>document.getElementById(id);
 const NOTES=[
 {v:"1.7",d:"Nov 23, 2026",items:["The Crate has a new home at theburg51.github.io/album-club-crate. Bring your catch-up progress over with \u201cCopy my code\u201d on the old page and \u201cLoad code\u201d here.","Catching up? Tap \u201cPick one for me\u201d in Your crate and the page picks a random album you missed.","There\u2019s a turntable at the bottom of the page. Give the record a spin, or drop the needle to hear a 30-second preview of a random album from the crate. While it plays, grab the record to stop it or spin it to scratch.","This week\u2019s albums now get their own big spot at the top of the page, Show & Tell takes up less room (tap \u201cSee the full rotation\u201d for everyone\u2019s turn), and the turntable sits right above the log.","Album covers now show in the log, on the grid and in your catch-up list. Tap a square on the grid to see its cover.","Sharing the link in a group chat now shows a preview card with our progress and what\u2019s up next."]},
@@ -184,8 +184,8 @@ const ranked=L.filter(x=>x.r),fD=new Date(2026,9+Math.ceil((500-L.length)/(2*52/
 $("stickerPct").textContent=(L.length/5).toFixed(1)+"%";
 $("lede").textContent=`${N} albums across ${weeks} logged weeks plus a warm-up, ${L.length} of them from the list. At this pace we'll reach the end of the 500 around ${fD.toLocaleDateString("en-US",MY)}.`;
 const byR=new Map(ranked.map(x=>[x.r,x])),nR=new Map(NEXT.map(x=>[x.r,x])),cellOf=new Map(),el=t=>document.createElement(t);
-let ART={};try{ART=JSON.parse(localStorage.getItem("ac.art"))||{}}catch(e){}
-const key=x=>x.t+"|"+x.a,btn=(c,s,o,k)=>{const b=el("button");b.type="button";b.className=c;if(k)b.dataset.k=k;s?(b.setAttribute("aria-label",s),b.onclick=b.onmouseenter=b.onfocus=()=>{o.textContent=s;const u=k&&ART[k];u&&o.insertAdjacentHTML("afterbegin",`<img src="${u}" alt="">`)}):(b.tabIndex=-1,b.setAttribute("aria-hidden","true"));return b};
+let ART={},SRC={};try{ART=JSON.parse(localStorage.getItem("ac.art2"))||{};SRC=JSON.parse(localStorage.getItem("ac.src"))||{}}catch(e){}
+const key=x=>x.t+"|"+x.a+"|"+(x.am||""),btn=(c,s,o,k)=>{const b=el("button");b.type="button";b.className=c;if(k)b.dataset.k=k;s?(b.setAttribute("aria-label",s),b.onclick=b.onmouseenter=b.onfocus=()=>{o.textContent=s;const u=k&&ART[k];u&&o.insertAdjacentHTML("afterbegin",`<img src="${u}" alt="">`)}):(b.tabIndex=-1,b.setAttribute("aria-hidden","true"));return b};
 for(let i=1;i<=500;i++){const x=byR.get(i),n=nR.get(i),b=btn("cell"+(x?" on"+(x.w==lastWeek?" recent":""):n?" next":""),x?`#${i} · ${x.t} — ${x.a} (${x.y}) · ${x.w?"week "+x.w:"warm-up"}`:n&&`#${i} · ${n.t} — ${n.a} (${n.y}) · up next`,$("readout"),x?key(x):n&&key(n));x&&cellOf.set(x.t,b);$("crate").append(b)}
 const top10=ranked.filter(x=>x.r<=10).length,cnt={},yc={},groups={};
 A.forEach(x=>{cnt[x.a]=(cnt[x.a]||0)+1;yc[x.y]=(yc[x.y]||0)+1;(groups[x.w]=groups[x.w]||[]).push(x)});
@@ -229,16 +229,16 @@ $("ld").onclick=()=>{try{const d=JSON.parse(decodeURIComponent(escape(atob(ci.va
 // album covers: looked up from Apple Music in the viewer's browser and cached there
 const RV=/[?&]covers\b/.test(location.search);
 function renderReview(){if(!RV)return;const all=[...A,...NEXT];$("review").hidden=false;let q=0,x=0;
-H("rv",all.map(a=>{const k=key(a),st=a.am?["","Apple Music ID"]:ART[k]?(q++,["q","Matched by search"]):(x++,["x",k in ART?"No cover found":"Looking…"]);return`<div><i class="cv" data-k="${esc(k)}"></i><b>${esc(a.t)}</b><span>${esc(a.a)} · ${a.w?"wk "+a.w:"April"}</span><span class="s ${st[0]}">${st[1]}</span></div>`}).join(""));
+H("rv",all.map(a=>{const k=key(a),st=SRC[k]==="id"?["","Apple Music ID"]:ART[k]?(q++,["q",a.am?"ID not in US store, matched by search":"Matched by search"]):(x++,["x",k in ART?(a.am?"ID not in US store, no cover":"No cover found"):"Looking…"]);return`<div><i class="cv" data-k="${esc(k)}"></i><b>${esc(a.t)}</b><span>${esc(a.a)} · ${a.w?"wk "+a.w:"April"}</span><span class="s ${st[0]}">${st[1]}</span></div>`}).join(""));
 $("rvSum").textContent=`${all.length} albums · ${q} to check · ${x} missing`}
 function paintArt(){Q("[data-k]").forEach(e=>{const u=ART[e.dataset.k];if(u&&!e.classList.contains("art")){e.style.backgroundImage=`url("${u}")`;e.classList.add("art")}})}
 const jsonp=u=>new Promise((ok,no)=>{const c="it"+Math.random().toString(36).slice(2),s=el("script"),end=()=>{delete window[c];s.remove()},t=setTimeout(()=>{end();no()},9000);window[c]=d=>{clearTimeout(t);end();ok(d)};s.onerror=()=>{clearTimeout(t);end();no()};s.src=u+"&callback="+c;document.head.append(s)});
 const big=u=>u.replace(/\/\d+x\d+bb\./,"/300x300bb."),nz=s=>s.toLowerCase().normalize("NFD").replace(/[^a-z0-9]/g,"");
 renderReview();(async()=>{const all=[...A,...NEXT],need=all.filter(x=>!(key(x) in ART)),ids=need.filter(x=>x.am);paintArt();if(!need.length)return;
-if(ids.length)try{const d=await jsonp("https://itunes.apple.com/lookup?id="+ids.map(x=>x.am).join(",")),m={};d.results.forEach(r=>r.artworkUrl100&&(m[r.collectionId]=r.artworkUrl100));ids.forEach(x=>{if(m[x.am])ART[key(x)]=big(m[x.am])})}catch(e){}
-paintArt();store.set("ac.art",ART);
-for(const x of need.filter(x=>!ART[key(x)])){try{const d=await jsonp("https://itunes.apple.com/search?media=music&entity=album&limit=10&term="+encodeURIComponent(x.t+" "+x.a)),t=nz(x.t),a=nz(x.a),r=d.results.find(r=>nz(r.collectionName).startsWith(t)&&(nz(r.artistName).includes(a)||a.includes(nz(r.artistName))));ART[key(x)]=r?big(r.artworkUrl100):0}catch(e){}}
-renderReview();paintArt();store.set("ac.art",ART)})();
+if(ids.length)try{const d=await jsonp("https://itunes.apple.com/lookup?id="+ids.map(x=>x.am).join(",")),m={};d.results.forEach(r=>r.artworkUrl100&&(m[r.collectionId]=r.artworkUrl100));ids.forEach(x=>{if(m[x.am]){ART[key(x)]=big(m[x.am]);SRC[key(x)]="id"}})}catch(e){}
+paintArt();store.set("ac.art2",ART);
+for(const x of need.filter(x=>!ART[key(x)])){try{const d=await jsonp("https://itunes.apple.com/search?media=music&entity=album&limit=10&term="+encodeURIComponent(x.t+" "+x.a)),t=nz(x.t),a=nz(x.a),ok=r=>nz(r.artistName).includes(a)||a.includes(nz(r.artistName)),ed=r=>{const c=r.collectionName.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,""),tt=x.t.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");return c.startsWith(tt)&&/^\s*[(\[-]/.test(c.slice(tt.length))},r=d.results.find(r=>ok(r)&&nz(r.collectionName)===t)||d.results.find(r=>ok(r)&&ed(r));ART[key(x)]=r?big(r.artworkUrl100):0;if(r)SRC[key(x)]="search"}catch(e){}}
+renderReview();paintArt();store.set("ac.art2",ART);store.set("ac.src",SRC)})();
 // turntable: drag or flick the record, tap the arm to play a random album from the crate
 const rec=$("rec"),lab=$("lab"),arm=$("arm");let ang=0,vel=0,drg=null,play=false,spinN=0,live=false,rt=0,raf=0,lt=0;
 const tick=t=>{const dt=Math.min(.05,lt?(t-lt)/1000:0);lt=t;if(drg&&t-drg.t>45)vel*=.5;if(live){const r=Math.abs(vel)/200,q=Math.abs(r-1)<.15?1:Math.round(Math.min(2.5,Math.max(.5,r))*4)/4;if(r<.08){au.paused||au.pause()}else{if(q!==au.playbackRate&&t-rt>150){au.playbackRate=q;rt=t}au.paused&&au.play().catch(()=>{})}}if(!drg){vel=play?vel+(200-vel)*Math.min(1,dt*2.5):vel*Math.pow(.35,dt);ang+=vel*dt}rec.style.transform=`rotate(${ang}deg)`;$("rpm").innerHTML=Math.abs(vel)>5?`<b>${(Math.abs(vel)/6).toFixed(0)}</b> RPM`:"33⅓ RPM";raf=play||drg||Math.abs(vel)>1?requestAnimationFrame(tick):(lt=0,0)};
