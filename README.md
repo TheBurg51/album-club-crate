@@ -18,6 +18,8 @@ The Album of the Week Club's progress through Rolling Stone's 500 Greatest Album
 | `tools/preview.cjs` | Rebuilds `preview.png` and the preview text from the page's data. Run `node tools/preview.cjs` from the repo root (needs Playwright). |
 | `tools/fonts/` | Fonts used to render the preview image. |
 | `manifest.webmanifest`, `icons/` | App name and icons for Add to Home Screen. |
+| `ahead.json` | Upcoming weeks, encrypted (AES-GCM, passphrase-derived key). Unreadable without the passphrase. |
+| `tools/ahead.cjs` | Rebuilds `ahead.json`: `AHEAD_PASS='…' node tools/ahead.cjs < upcoming.json`. Never commit `upcoming.json`. |
 | `CHANGELOG.md` | Every version of the site and what changed. |
 
 ## Where the data lives
@@ -40,6 +42,7 @@ A scheduled Claude task runs every Monday morning. It picks and sends the albums
 
 - `?covers`: check every album's cover and where it came from.
 - `?wrapped`: preview Club Wrapped outside December and January.
+- `?ahead`: the organizer's passphrase-locked look at upcoming weeks. Nothing shows without the passphrase.
 
 ## Rules for changes
 
