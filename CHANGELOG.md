@@ -12,6 +12,7 @@ The site's own Release notes section shows only the two most recent versions. Th
   - Italic serif labels instead of the monospace all-caps ones.
   - Burnt orange (#c4552a) and mustard (#eeb03b) replace the blue and bright yellow.
   - Dark mode is warm espresso.
+- **Colored vinyl:** when the needle drops, the record takes on the album cover's main colors as a splatter, swirl or split variant (the same style every time for a given album), and fades back to black when the arm lifts.
 - **Projected finish** is a specific week: the tile shows the month and year with "projected finish: week N, the week of …", worked out week by week (two list albums a week, one in Show & Tell weeks). The intro line names the same week.
 - **Phone polish:**
   - This week's cards use a smaller cover so titles get more room.
