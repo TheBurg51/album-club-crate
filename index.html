@@ -72,12 +72,27 @@ h1{line-height:.95}h2{line-height:1.05}.twc a.ttl{letter-spacing:-.01em;font-var
 .jump a.on{background:var(--co);border-color:var(--co);color:#fff}
 .xp,.more{border-radius:999px}
 @media (max-width:640px){.mast .sticker{font-size:24px}}
+.rot .when{white-space:normal;overflow:visible;text-overflow:clip;font-family:var(--fs);font-style:italic;font-size:13px;line-height:1.25}
+.field label,.sup .k,.xl,.snt summary,.rel .v,.wk .n small,.rv .s{font-family:var(--fs);font-style:italic;text-transform:none;letter-spacing:0;font-size:14px}
+.wk .n small{font-size:12px}.rel .v{font-size:13px}.snt summary{font-size:14px;opacity:1}.sup .k{color:var(--co)}
+.st,.ol{font-family:var(--fb);font-size:11.5px;font-weight:600;letter-spacing:0;border-radius:999px;padding:1px 8px;vertical-align:1px}
+.st{background:color-mix(in srgb,var(--sk) 55%,var(--sh));color:#4a3418}.ol{border:1px solid var(--ru);background:var(--pa);color:var(--mu)}
+.swh{display:none}
+.catch.short label:nth-child(n+9){display:none}#catchMore{margin-top:12px}
+.ar .st,.ar .ol{display:table;margin:4px 0 0}.twc .ar .st{margin-top:6px}
+@media (max-width:520px){
+.twc{grid-template-columns:92px minmax(0,1fr);gap:14px;padding:14px}.twc a.ttl{font-size:21px}.twc .ar{font-size:15px}
+.wk{grid-template-columns:50px 1fr}.wk .n{padding-left:12px;font-size:26px}
+.alb{grid-template-columns:40px minmax(0,1fr) auto;grid-template-rows:auto auto;column-gap:10px;row-gap:0;padding-right:12px}.alb .cv{grid-row:1/3}.alb .ta{grid-row:1/3}.alb .rk{grid-column:3;grid-row:1;align-self:end}.alb .yr{grid-column:3;grid-row:2;align-self:start}
+}
+@media (max-width:640px){.swh{display:inline}.supers,.stg{-webkit-mask-image:linear-gradient(90deg,#000 82%,transparent);mask-image:linear-gradient(90deg,#000 82%,transparent)}}
+
 </style>
 </head>
 <body>
 <div class="wrap">
 <header class="mast">
-<div class="eyebrow">Album of the Week Club · Rolling Stone 500 (2023 edition)</div>
+<div class="eyebrow">Album of the Week Club · Rolling Stone’s 500</div>
 <h1>The Crate<br>So Far</h1>
 <p id="lede"></p>
 <div class="sticker" aria-hidden="true"><div><span id="stickerPct"></span><small>OF THE 500</small></div></div>
@@ -106,6 +121,7 @@ h1{line-height:.95}h2{line-height:1.05}.twc a.ttl{letter-spacing:-.01em;font-var
 <div class="sp"><div><button type="button" class="xb" id="spin">🎲 Pick one for me</button></div><div id="spOut" aria-live="polite"></div></div>
 <div class="track" style="margin-bottom:10px"><i id="catchBar" style="width:0"></i></div>
 <div class="catch" id="catch"></div>
+<button type="button" class="more" id="catchMore" hidden></button>
 </div>
 <details class="xfer" id="xfer">
 <summary><b>Move your crate</b><span>Take your picks to another phone or computer</span></summary>
@@ -151,7 +167,7 @@ h1{line-height:.95}h2{line-height:1.05}.twc a.ttl{letter-spacing:-.01em;font-var
 </div>
 </section>
 <section class="section">
-<h2>Fun facts</h2>
+<div class="head"><h2>Fun facts</h2><span class="eyebrow swh">Swipe for more →</span></div>
 <div class="supers" id="supers"></div>
 </section>
 <section class="section" aria-labelledby="msH">
@@ -160,7 +176,7 @@ h1{line-height:.95}h2{line-height:1.05}.twc a.ttl{letter-spacing:-.01em;font-var
 <div class="ms" id="ms"></div>
 </section>
 <section class="section" aria-labelledby="stgH">
-<div class="head"><div><h2 id="stgH">Show &amp; Tell picks</h2><span class="eyebrow">One off-list album a month, by turns</span></div><div class="arw" id="stgArw"><button type="button" data-d="-1" aria-label="Scroll back">‹</button><button type="button" data-d="1" aria-label="Scroll forward">›</button></div></div>
+<div class="head"><div><h2 id="stgH">Show &amp; Tell picks</h2><span class="eyebrow">One off-list album a month, by turns<span class="swh"> · swipe →</span></span></div><div class="arw" id="stgArw"><button type="button" data-d="-1" aria-label="Scroll back">‹</button><button type="button" data-d="1" aria-label="Scroll forward">›</button></div></div>
 <div class="stg" id="stg"></div>
 </section>
 <section class="section" id="s-spin" aria-labelledby="tH">
@@ -260,7 +276,7 @@ const row=([w,t,a,y,r,am,st])=>({w,t,a,y,r:r>0?r:undefined,off:r<0,am,st}), A=R.
 const NEXT=[[30,"The Idler Wheel...","Fiona Apple",2012,213,"1462213924"],[30,"DAMN.","Kendrick Lamar",2017,175,"1440881047"]].map(row);
 const $=id=>document.getElementById(id);
 const NOTES=[
-{v:"2.0",d:"Nov 23, 2026",items:["A warmer look: cream paper, a soft serif for headings, and burnt orange and mustard instead of the old blue. Dark mode turns warm espresso.","The home-screen icon, the turntable and the link preview card got the same warm makeover. To get the new icon, remove the Crate from your home screen and add it again."]},
+{v:"2.0",d:"Nov 23, 2026",items:["A warmer look: cream paper, a soft serif for headings, and burnt orange and mustard instead of the old blue. Dark mode turns warm espresso.","Roomier on phones: album titles get more space on This week\u2019s cards and in the log, long catch-up lists show 8 at a time, and swipe rows fade at the edge so you know there\u2019s more.","The home-screen icon, the turntable and the link preview card got the same warm makeover. To get the new icon, remove the Crate from your home screen and add it again."]},
 {v:"1.9",d:"Nov 23, 2026",items:["A menu at the top jumps straight to This week, My crate, Stats, the Turntable or the Log, and sticks around as you scroll.","The log shows the last four weeks. Tap \u201cShow all weeks\u201d for the rest.","Phones get a tighter layout: smaller stat tiles, the % sticker next to the intro, the release-year chart grouped by decade, and swipeable rows for Fun facts and Show & Tell picks.","Off-list albums carry an OFF-LIST tag in the log, and the home-screen bar is slimmer (tap How for the steps)."]},
 ];
 const picks={Nathan:"Yumeno Garden",Devo:"Coming Home",Neil:"Petals for Armor","George Price":"E. 1999 Eternal","Bryan Bland":"Peripheral Vision",Jerry:"Abandoned Luncheonette"};
@@ -281,8 +297,8 @@ for(let dc=1960;dc<2030;dc+=10){const c=el("div");c.className="dcol";c.innerHTML
 for(let y=1960;y<2030;y++){const c=el("div");c.className="yc";A.filter(x=>x.y==y).forEach(x=>{const s=`${x.y} · ${x.t} — ${x.a}`,d=btn("d"+(x.off?" off":""),s,$("tlRead"));d.title=s;d.dataset.i=A.indexOf(x);c.append(d)});$("tl").append(c)}
 const deep=ranked.reduce((m,x)=>x.r>m.r?x:m),nw=A.reduce((m,x)=>x.y>m.y?x:m),tY=Object.keys(yc).reduce((m,y)=>yc[y]>yc[m]?y:m),yA=A.filter(x=>x.y==tY);
 H("supers",[["Deepest cut",deep.t,`#${deep.r} is the furthest down the list we've gone.`],["Top-10 tally",top10+" of 10","What's Going On, Blue, Songs in the Key of Life, Rumours and Miseducation."],["Repeat artists",LF(Object.keys(cnt).filter(a=>cnt[a]>1)),"Artists we've heard more than one album from."],["Most common year",tY,`${yA.length} albums: ${yA.map(x=>x.a).join(", ")}.`],["Newest album",`${nw.t} (${nw.y})`,nw.off?"Not on the list. The newest list albums are from 2012.":"Straight off the list."],["Show & Tell picks",snt.length+" so far","Picked by "+LF(snt.map(x=>x.st))+"."]].map(([k,t,d])=>`<div class="sup"><span class="k">${k}</span><span class="t">${esc(t)}</span><span class="d">${esc(d)}</span></div>`).join(""));
-const tag=x=>x.st?`<span class="st">SHOW &amp; TELL · ${x.st.toUpperCase()}</span>`:"",
-alb=x=>`<div class="alb"><i class="cv" data-k="${esc(key(x))}"></i><div class="ta"><a class="tt" data-q="${esc(x.t+" "+x.a)}" data-am="${x.am||""}" target="_blank" rel="noopener">${esc(x.t)}</a><span class="ar">${esc(x.a)}${x.st?tag(x):x.off?'<span class="ol">OFF-LIST</span>':""}</span></div><span class="yr">${x.y}</span><span class="rk${x.r?"":" dim"}">${x.r?"#"+x.r:"—"}</span></div>`,
+const tag=x=>x.st?`<span class="st">Show &amp; Tell · ${x.st}</span>`:"",
+alb=x=>`<div class="alb"><i class="cv" data-k="${esc(key(x))}"></i><div class="ta"><a class="tt" data-q="${esc(x.t+" "+x.a)}" data-am="${x.am||""}" target="_blank" rel="noopener">${esc(x.t)}</a><span class="ar">${esc(x.a)}${x.st?tag(x):x.off?'<span class="ol">Off-list</span>':""}</span></div><span class="yr">${x.y}</span><span class="rk${x.r?"":" dim"}">${x.r?"#"+x.r:"—"}</span></div>`,
 wk=(c,n,s,a)=>`<div class="wk${c}"><div class="n">${n}<small>${s}</small></div><div class="albums">${a.map(alb).join("")}</div></div>`;
 H("log",Object.keys(groups).sort((a,b)=>b-a).map((w,i)=>wk(i>3?" old":"",+w||"PRE",+w?"WEEK":"APRIL",groups[w])).join(""));{const n=Object.keys(groups).length,lb=$("logMore");lb.hidden=n<=4;lb.textContent=`Show all ${n} weeks`;lb.onclick=()=>{const all=$("log").classList.toggle("all");lb.textContent=all?"Show fewer weeks":`Show all ${n} weeks`;lb.setAttribute("aria-expanded",all);all||$("s-log").scrollIntoView()}}
 $("twWhen").textContent=`Week ${NEXT[0].w} · from ${new Date(2026,4,7*NEXT[0].w-3).toLocaleDateString("en-US",{month:"short",day:"numeric"})}`;
@@ -313,10 +329,10 @@ function paint(){const m=missedAll(),left=m.filter(x=>!caught.has(x.t)),done=m.l
 cellOf.forEach(b=>b.classList.remove("missed"));left.forEach(x=>cellOf.get(x.t)?.classList.add("missed"));
 $("lgMissed").hidden=!left.length;$("spin").hidden=!left.length;$("catchBar").style.width=m.length?done/m.length*100+"%":"0";$("catchWrap").hidden=!m.length;
 $("mineSum").innerHTML=join===null?"New to the club, or catching up? Pick the week you joined and this section turns into your own catch-up list.":m.length?`The club heard <b>${m.length}</b> albums before you joined, and you've caught up on <b>${done}</b> of them. That puts you at <b>${N-left.length}</b> of the club's ${N}.`+(left.length?" Hollow squares on the grid are the list albums you still have to hear.":" You're fully caught up."):`You've been here for all <b>${N}</b> albums. Nothing to catch up on.`;renderStats()}
-function buildList(){setTimeout(paintArt);H("catch",missedAll().map((x,i)=>`<label for="cu${i}"><input type="checkbox" id="cu${i}" data-t="${esc(x.t)}"${caught.has(x.t)?" checked":""}><i class="cv sm" data-k="${esc(key(x))}"></i><span class="ta"><span class="tt">${esc(x.t)}</span><span class="ar">${esc(x.a)}${x.st?tag(x):x.off?'<span class="ol">OFF-LIST</span>':""}</span></span><span class="rk">${x.w?"wk "+x.w:"April"}</span></label>`).join(""))}
+function buildList(){setTimeout(()=>{const n=$("catch").children.length,b=$("catchMore"),c=$("catch");c.classList.toggle("short",n>8&&!c.dataset.all);b.hidden=n<=8;b.textContent=c.dataset.all?"Show fewer":`Show all ${n} albums`;b.onclick=()=>{c.dataset.all=c.dataset.all?"":"1";c.classList.toggle("short",!c.dataset.all);b.textContent=c.dataset.all?"Show fewer":`Show all ${n} albums`;b.setAttribute("aria-expanded",!!c.dataset.all)}});setTimeout(paintArt);H("catch",missedAll().map((x,i)=>`<label for="cu${i}"><input type="checkbox" id="cu${i}" data-t="${esc(x.t)}"${caught.has(x.t)?" checked":""}><i class="cv sm" data-k="${esc(key(x))}"></i><span class="ta"><span class="tt">${esc(x.t)}</span><span class="ar">${esc(x.a)}${x.st?tag(x):x.off?'<span class="ol">Off-list</span>':""}</span></span><span class="rk">${x.w?"wk "+x.w:"April"}</span></label>`).join(""))}
 let lastPick=null;
 $("spin").onclick=()=>{const left=missedAll().filter(x=>!caught.has(x.t)),pool=left.length>1?left.filter(x=>x!==lastPick):left;if(!pool.length)return;const x=lastPick=pool[Math.random()*pool.length|0];
-H("spOut",`<div class="spc"><i class="cv" data-k="${esc(key(x))}"></i><div class="ta"><span class="eyebrow">Your pick · ${x.w?"week "+x.w:"April warm-up"}</span><a class="tt" data-q="${esc(x.t+" "+x.a)}" data-am="${x.am||""}" target="_blank" rel="noopener">${esc(x.t)}</a><span class="ar">${esc(x.a)}${x.st?tag(x):x.off?'<span class="ol">OFF-LIST</span>':""}</span></div><button type="button" class="xb" id="spDone">Mark as heard</button></div>`);
+H("spOut",`<div class="spc"><i class="cv" data-k="${esc(key(x))}"></i><div class="ta"><span class="eyebrow">Your pick · ${x.w?"week "+x.w:"April warm-up"}</span><a class="tt" data-q="${esc(x.t+" "+x.a)}" data-am="${x.am||""}" target="_blank" rel="noopener">${esc(x.t)}</a><span class="ar">${esc(x.a)}${x.st?tag(x):x.off?'<span class="ol">Off-list</span>':""}</span></div><button type="button" class="xb" id="spDone">Mark as heard</button></div>`);
 $("spin").textContent="🎲 Pick another";setSvc(store.get("ac.svc","spotify"));paintArt();
 $("spDone").onclick=()=>{caught.add(x.t);save();redo();cheer(x.t);lastPick=null;$("spin").textContent="🎲 Pick one for me";H("spOut",`<p class="sub">Nice, <b>${esc(x.t)}</b> is checked off.</p>`)}};
 $("catch").onchange=e=>{const t=e.target.dataset.t;if(t){e.target.checked?caught.add(t):caught.delete(t);save();paint();e.target.checked&&cheer(t)}};

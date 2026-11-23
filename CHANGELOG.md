@@ -12,6 +12,14 @@ The site's own Release notes section shows only the two most recent versions. Th
   - Italic serif labels instead of the monospace all-caps ones.
   - Burnt orange (#c4552a) and mustard (#eeb03b) replace the blue and bright yellow.
   - Dark mode is warm espresso.
+- **Phone polish:**
+  - This week's cards use a smaller cover so titles get more room.
+  - Log rows stack rank above year so titles don't wrap early.
+  - Show & Tell and Off-list tags sit on their own line as soft pills.
+  - The catch-up list shows 8 at a time, with a Show all button.
+  - Rotation names wrap instead of getting cut off.
+  - The leftover all-caps labels became italic serif.
+  - Swipe rows fade at the edge, with a "Swipe for more" hint.
 - The turntable deck is walnut brown, the home-screen icon is a black record with a burnt-orange label on mustard, and the link-preview card (`preview.png`) uses the new palette and serif.
 
 ## v1.9 · Nov 23, 2026
