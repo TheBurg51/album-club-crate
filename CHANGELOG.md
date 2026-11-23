@@ -12,6 +12,7 @@ The site's own Release notes section shows only the two most recent versions. Th
   - Italic serif labels instead of the monospace all-caps ones.
   - Burnt orange (#c4552a) and mustard (#eeb03b) replace the blue and bright yellow.
   - Dark mode is warm espresso.
+- **Projected finish** is a specific week: the tile shows the month and year with "projected finish: week N, the week of …", worked out week by week (two list albums a week, one in Show & Tell weeks). The intro line names the same week.
 - **Phone polish:**
   - This week's cards use a smaller cover so titles get more room.
   - Log rows stack rank above year so titles don't wrap early.
