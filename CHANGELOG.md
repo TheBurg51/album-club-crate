@@ -4,6 +4,16 @@ Changes to how the Album Club Crate site works. Weekly album updates, correction
 
 The site's own Release notes section shows only the two most recent versions. This file keeps all of them.
 
+## v2.0 · Nov 23, 2026
+
+- **Warm "liner notes" look:**
+  - Cream paper background with a faint grain, and soft ivory cards with rounded corners and gentle shadows.
+  - Fraunces serif for headings and big numbers.
+  - Italic serif labels instead of the monospace all-caps ones.
+  - Burnt orange (#c4552a) and mustard (#eeb03b) replace the blue and bright yellow.
+  - Dark mode is warm espresso.
+- The turntable deck is walnut brown, the home-screen icon is a black record with a burnt-orange label on mustard, and the link-preview card (`preview.png`) uses the new palette and serif.
+
 ## v1.9 · Nov 23, 2026
 
 - **Automatic-turntable tonearm:** tapping the arm raises it, swings it slowly over the record (about 2 seconds) and lowers it. The music starts when the needle lands. Lifting stops the sound at once, then the arm rises and swings home.
