@@ -4,6 +4,19 @@ Changes to how the Album Club Crate site works. Weekly album updates, correction
 
 The site's own Release notes section shows only the two most recent versions. This file keeps all of them.
 
+## v1.9 · Nov 23, 2026
+
+- **Jump menu:** a sticky row of links (This week · My crate · Stats · Turntable · Log) that highlights the section on screen. In home-screen mode the ↻ refresh button sits in it.
+- **Shorter log:** the last four weeks show, with a Show all weeks button for the rest.
+- **Phone layout:**
+  - Stat tiles go three across, and a seventh tile spans the row.
+  - The % sticker sits beside the intro.
+  - The release-year chart groups dots by decade, so they're big enough to tap.
+  - Fun facts and Show & Tell picks become swipeable rows.
+- **Log:** off-list albums get an OFF-LIST tag under the artist instead of "off-list" squeezed into the rank column.
+- **Home-screen bar:** one slim line; tap How for the steps.
+- **Release notes:** older versions fold behind "Earlier".
+
 ## v1.8 · Nov 23, 2026
 
 - **Show & Tell picks gallery:** every off-list pick with its cover, picker and month.
