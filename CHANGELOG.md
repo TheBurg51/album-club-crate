@@ -13,6 +13,7 @@ The site's own Release notes section shows only the two most recent versions. Th
 - **Club Wrapped:** a year-in-review card that appears every December and January, with a Share button. Preview it any time with `?wrapped`.
 - **Add to Home Screen:** app icon, name and web app manifest, so the Crate opens like an app from a phone's home screen. A bar pinned to the bottom of the screen shows how, tailored to iPhone, Android or desktop, with a one-tap Install button where the browser supports it. It disappears whenever the Crate is opened from the home screen.
 - **Coming up (organizer only):** `?ahead` opens a passphrase-locked section with upcoming weeks, their covers and listen links. The weeks are stored encrypted in `ahead.json`, and a week drops off automatically once it becomes this week.
+- **Move your crate** got a cleaner layout: a Send card with one-tap Copy my crate link (opening the link on another device loads your progress), and a Receive card that accepts a link or an older code.
 - Opening the site with `?code=<crate code>` loads that progress automatically. The old claude.ai page's button uses this to carry everyone's progress over.
 - **Fixed:** hidden sections could still show on the GitHub version of the page.
 - The browser-tab icon has a light rim and lighter grooves in dark mode, so it stands out on dark tab bars.
