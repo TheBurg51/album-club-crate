@@ -17,6 +17,7 @@ The Album of the Week Club's progress through Rolling Stone's 500 Greatest Album
 | `preview.png` | The image shown when the link is shared in a chat. |
 | `tools/preview.cjs` | Rebuilds `preview.png` and the preview text from the page's data. Run `node tools/preview.cjs` from the repo root (needs Playwright). |
 | `tools/fonts/` | Fonts used to render the preview image. |
+| `img/wood.jpg` | The walnut wood grain on the turntable. |
 | `manifest.webmanifest`, `icons/` | App name and icons for Add to Home Screen. |
 | `ahead.json` | Upcoming weeks, encrypted (AES-GCM, passphrase-derived key). Unreadable without the passphrase. |
 | `tools/ahead.cjs` | Rebuilds `ahead.json`: `AHEAD_PASS='…' node tools/ahead.cjs < upcoming.json`. Never commit `upcoming.json`. |
