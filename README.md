@@ -27,11 +27,12 @@ The Album of the Week Club's progress through Rolling Stone's 500 Greatest Album
 
 Everything is near the bottom of `index.html`:
 
-- `rotData`: the Show & Tell rotation, who's up next and their month.
+- `rotData`: the Show & Tell rotation, who's up next and their month. `jan` names the organizer, who takes every January; the rest of the rotation skips them.
 - `R`: every album heard, one per line: `[week, "title", "artist", year, rank, "appleMusicId", "showTellPicker"]`.
   - `rank` is the 2023 list rank, or `-1` for an album that's not on the list.
   - `appleMusicId` must be a **US store** ID. It drives the cover, the Apple Music link and the turntable preview.
 - `NEXT`: this week's albums, shown big at the top of the page.
+- `BONUS`: holiday bonus albums for this week, same format as `R` plus the holiday as an 8th item (e.g. `"Thanksgiving"`). When the week ends they move into `R` with the holiday kept.
 - `picks`: each person's Show & Tell album.
 - `NOTES`: the release notes shown on the page, the two most recent versions only.
 

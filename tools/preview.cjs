@@ -22,9 +22,10 @@ const font = f => 'file://' + path.join(__dirname, 'fonts', f);
     lastWeek,
     nextWeek: NEXT[0].w,
     next: NEXT.map(x => [x.t, x.a]),
+    bonus: BONUS.map(x => [x.t, x.a, x.hol]),
     ranks: L.filter(x => x.r).map(x => [x.r, x.w === lastWeek ? 1 : 0]),
-    nextRanks: NEXT.filter(x => x.r).map(x => x.r),
-    snt: ROT[NI],
+    nextRanks: [...NEXT, ...BONUS].filter(x => x.r).map(x => x.r),
+    snt: NOWP,
     sntMonth: mon(0).split(' ')[0],
   }));
   const pct = (d.list / 5).toFixed(1);
@@ -72,6 +73,7 @@ h1{font-family:BS;font-weight:700;font-size:112px;line-height:.92;letter-spacing
   </div>
   <div class="up"><div class="ey">Up next · Week ${d.nextWeek}</div>
     ${d.next.map(([t, a]) => `<p>${esc(t)} <small>${esc(a)}</small></p>`).join('')}
+    ${d.bonus.map(([t, a, h]) => `<p>${esc(t)} <small>${esc(a)} · ${esc(h)} bonus</small></p>`).join('')}
   </div>
 </div>
 <div class="right">
@@ -83,7 +85,7 @@ h1{font-family:BS;font-weight:700;font-size:112px;line-height:.92;letter-spacing
   await page.screenshot({ path: path.join(root, 'preview.png') });
   await browser.close();
 
-  const nextText = d.next.map(x => x[0]).join(' and ');
+  const nextText = d.next.map(x => x[0]).join(' and ') + d.bonus.map(x => `, plus ${x[0]} for ${x[2]}`).join('');
   const desc = `${d.heard} albums heard · ${pct}% of the Rolling Stone 500 · Up next: ${nextText}`
     .replace(/&/g, '&amp;').replace(/"/g, '&quot;');
   let html = fs.readFileSync(indexPath, 'utf8');

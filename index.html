@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Album Club Crate</title>
-<meta name="description" content="66 albums heard · 11.4% of the Rolling Stone 500 · Up next: The Idler Wheel... and DAMN.">
+<meta name="description" content="66 albums heard · 11.4% of the Rolling Stone 500 · Up next: The Idler Wheel... and DAMN., plus Harvest for Thanksgiving">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Album Club Crate">
 <meta property="og:title" content="The Crate So Far · Album of the Week Club">
-<meta property="og:description" content="66 albums heard · 11.4% of the Rolling Stone 500 · Up next: The Idler Wheel... and DAMN.">
+<meta property="og:description" content="66 albums heard · 11.4% of the Rolling Stone 500 · Up next: The Idler Wheel... and DAMN., plus Harvest for Thanksgiving">
 <meta property="og:url" content="https://theburg51.github.io/album-club-crate/">
 <meta property="og:image" content="https://theburg51.github.io/album-club-crate/preview.png?v=30">
 <meta property="og:image:width" content="1200">
@@ -120,6 +120,10 @@ h1{line-height:.95}h2{line-height:1.05}.twc a.ttl{letter-spacing:-.01em;font-var
 .since{margin-top:14px}.since #sinceList{max-height:440px;overflow:auto;padding-right:4px}
 #sinceList input:checked~.ta{color:inherit;text-decoration:none}
 #sinceList input:not(:checked)~.ta{color:var(--mu)}
+
+.twb:empty{display:none}.twb{margin-top:16px}.twbh{margin:0 0 10px;font-size:14px;color:var(--mu);display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px}.twbh b .st{font-size:13px;padding:3px 10px;margin:0}
+.st.hl{background:color-mix(in srgb,var(--co) 22%,var(--sh));color:var(--in)}
+.twc .st.hl{margin-left:8px}.la .st.hl{display:table;margin:4px 0 0}
 </style>
 </head>
 <body>
@@ -133,7 +137,7 @@ h1{line-height:.95}h2{line-height:1.05}.twc a.ttl{letter-spacing:-.01em;font-var
 <nav class="jump" id="jump" aria-label="Jump to"><a href="#s-week">This week</a><a href="#s-crate">My crate</a><a href="#s-stats">Stats</a><a href="#s-spin">Turntable</a><a href="#s-log">Log</a></nav>
 <div class="mscel" id="mscel" hidden></div>
 <section class="wrapd" id="wrapped" aria-labelledby="wrH" hidden></section>
-<section class="section" id="s-week" aria-labelledby="twH"><div class="head"><h2 id="twH">This week's albums</h2><span class="eyebrow" id="twWhen"></span></div><div class="tw" id="tw"></div></section>
+<section class="section" id="s-week" aria-labelledby="twH"><div class="head"><h2 id="twH">This week's albums</h2><span class="eyebrow" id="twWhen"></span></div><div class="tw" id="tw"></div><div class="twb" id="twb"></div></section>
 <section class="section" id="ahead" aria-labelledby="ahH" hidden>
 <div class="head"><h2 id="ahH">Coming up</h2><span class="eyebrow">Just for you · no spoilers</span></div>
 <form class="xrow" id="ahF"><input type="password" id="ahP" placeholder="Passphrase" aria-label="Passphrase" autocomplete="current-password"><button type="submit" class="xb">Unlock</button></form>
@@ -141,7 +145,7 @@ h1{line-height:.95}h2{line-height:1.05}.twc a.ttl{letter-spacing:-.01em;font-var
 <button type="button" class="xb" id="ahLock" hidden>Lock it on this device</button>
 </section>
 <section class="snt" aria-labelledby="sntH">
-<div class="sntTop"><div><div class="eyebrow" id="sntWhen"></div><h2 id="sntH"></h2></div><p>Show &amp; Tell: the first week of each month, one album that isn't on the list. Turns go by seniority.</p></div>
+<div class="sntTop"><div><div class="eyebrow" id="sntWhen"></div><h2 id="sntH"></h2></div><p>Show &amp; Tell: the first week of each month, one album that isn't on the list. Turns go by seniority, and Nathan, as organizer, takes every January.</p></div>
 <details><summary>See the full rotation</summary><ol class="rot" id="rot" aria-label="Show and Tell rotation"></ol></details>
 </section>
 <section class="panel mine" id="s-crate" aria-labelledby="mineH">
@@ -242,7 +246,7 @@ h1{line-height:.95}h2{line-height:1.05}.twc a.ttl{letter-spacing:-.01em;font-var
 <button type="button" class="rfb" id="rfb" aria-label="Refresh the page" hidden>↻</button>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <div class="a2b" id="a2b" role="region" aria-label="Add to home screen" hidden><img src="icons/icon-192.png?v=5" alt="" width="30" height="30"><button type="button" class="a2h" id="a2h" aria-expanded="false"><b>Add the Crate to your home screen</b><span>How</span></button><button type="button" class="a2i" id="a2i" hidden>Install</button><div class="a2x" id="a2t" hidden></div></div>
-<script type="application/json" id="rotData">{"rot":["Nathan","Devo","Neil","George Price","Bryan Bland","Jerry","Arianne","Noah","Murt","Peter","Eric Sanford","Curtis","Emmit","Genevieve","Cole","Maggie","Anissa"],"next":6,"nextMonth":"2026-12"}</script>
+<script type="application/json" id="rotData">{"rot":["Nathan","Devo","Neil","George Price","Bryan Bland","Jerry","Arianne","Noah","Murt","Peter","Eric Sanford","Curtis","Emmit","Genevieve","Cole","Maggie","Anissa"],"next":6,"nextMonth":"2026-12","jan":"Nathan"}</script>
 <script>
 // album rows: [week,title,artist,year,rank (0 = rank unknown, -1 = off the list),appleMusicId,showTellPicker]
 const R=[
@@ -313,22 +317,28 @@ const R=[
 [29,"Still Bill","Bill Withers",1972,333,"989376986"],
 [29,"Dirty Mind","Prince",1980,326,"1544296643"]
 ];
-const row=([w,t,a,y,r,am,st])=>({w,t,a,y,r:r>0?r:undefined,off:r<0,am,st}), A=R.map(row);
+const row=([w,t,a,y,r,am,st,hol])=>({w,t,a,y,r:r>0?r:undefined,off:r<0,am,st:st||undefined,hol}), A=R.map(row);
 const NEXT=[[30,"The Idler Wheel...","Fiona Apple",2012,213,"1462213924"],[30,"DAMN.","Kendrick Lamar",2017,175,"1440881047"]].map(row);
+// holiday bonus albums for this week, on top of the regular two: same format as R plus the holiday as the 8th item
+const BONUS=[[30,"Harvest","Neil Young",1972,72,"1015739190","","Thanksgiving"]].map(row).filter(x=>x.w===NEXT[0].w);
 const $=id=>document.getElementById(id);
 const NOTES=[
-{v:"2.1",d:"Nov 26, 2026",items:["Here since day one but missed a few? Your crate has a new “Missed some since you joined?” list: untick any club album you haven’t heard and it moves to your catch-up list, the grid and your numbers. Crate links carry these over to your other devices too."]},
+{v:"2.1",d:"Nov 26, 2026",items:["Holiday bonus albums get their own spot under This week\u2019s albums, and a holiday tag in the log.","Here since day one but missed a few? Your crate has a new “Missed some since you joined?” list: untick any club album you haven’t heard and it moves to your catch-up list, the grid and your numbers. Crate links carry these over to your other devices too."]},
 {v:"2.0",d:"Nov 23, 2026",items:["The turntable has a walnut wood finish, and its Album Club label now stars Rocco.","Rocco pops up to cheer you on when you tick off catch-up albums, and puts on a party hat for the big moments and club milestones.","A secret on the turntable: give the record a good spin before you drop the needle and see what happens.","A warmer look: cream paper, a soft serif for headings, and burnt orange and mustard instead of the old blue. Dark mode turns warm espresso.","Drop the needle and the record turns into colored vinyl that matches the album cover: splatter, swirl or a two-tone blend.","Roomier on phones: album titles get more space on This week\u2019s cards and in the log, long catch-up lists show 8 at a time, and swipe rows fade at the edge so you know there\u2019s more.","The home-screen icon, the turntable and the link preview card got the same warm makeover. To get the new icon, remove the Crate from your home screen and add it again."]},
 ];
 const picks={Nathan:"Yumeno Garden",Devo:"Coming Home",Neil:"Petals for Armor","George Price":"E. 1999 Eternal","Bryan Bland":"Peripheral Vision",Jerry:"Abandoned Luncheonette"};
 const esc=s=>s.replace(/&/g,"&amp;").replace(/</g,"&lt;"),Q=s=>document.querySelectorAll(s),H=(i,h)=>$(i).innerHTML=h,LF=a=>new Intl.ListFormat("en").format(a),MY={month:"long",year:"numeric"},N=A.length;
 const lastWeek=Math.max(...A.map(x=>x.w)),L=A.filter(x=>!x.off),snt=A.filter(x=>x.st),weeks=new Set(A.filter(x=>x.w).map(x=>x.w)).size;
-const RD=JSON.parse($("rotData").textContent),ROT=RD.rot,NI=RD.next,[nY,nM]=RD.nextMonth.split("-").map(Number),mon=i=>new Date(nY,nM-1+i,1).toLocaleDateString("en-US",MY);
+const RD=JSON.parse($("rotData").textContent),ROT=RD.rot,NI=RD.next,[nY,nM]=RD.nextMonth.split("-").map(Number),mon=i=>new Date(nY,nM-1+i,1).toLocaleDateString("en-US",MY),ORG=RD.jan||null,
+// Show & Tell schedule: walk month by month from nextMonth. January always goes to the organizer (jan);
+// every other month goes to the next person in the rotation, skipping the organizer.
+SCH=(()=>{const o=[];let k=NI,i=0;while(k<ROT.length&&i<120){if(ORG&&new Date(nY,nM-1+i,1).getMonth()===0)o.push({p:ORG,i});else{if(ROT[k]===ORG){k++;continue}o.push({p:ROT[k],i});k++}i++}return o})(),
+when=p=>SCH.find(x=>x.p===p),NOWP=SCH.length?SCH[0].p:ROT[NI];
 $("sntWhen").textContent="Show & Tell · up next · "+mon(0);
-$("sntH").textContent=ROT[NI]+"'s pick";
-H("rot",ROT.map((p,i)=>{const o=i-NI,w=o<0?(picks[p]?"Picked "+picks[p]:"Done"):o?mon(o):"Up next · "+mon(0).split(" ")[0];return`<li class="${o<0?"done":o?"":"now"}"><span class="who">${i+1}. ${p}</span><span class="when" title="${w}">${w}</span></li>`}).join(""));
+$("sntH").textContent=NOWP+"'s pick";
+H("rot",ROT.map((p,i)=>{const s=when(p),now=s&&s.i===0,w=p===ORG&&s?(now?"Up next · "+mon(s.i):"Every January · next "+new Date(nY,nM-1+s.i,1).toLocaleDateString("en-US",{month:"short",year:"numeric"})):i<NI||!s?(picks[p]?"Picked "+picks[p]:"Done"):now?"Up next · "+mon(0).split(" ")[0]:mon(s.i);return`<li class="${now?"now":i<NI&&p!==ORG?"done":""}"><span class="who">${i+1}. ${p}</span><span class="when" title="${w}">${w}</span></li>`}).join(""));
 const ranked=L.filter(x=>x.r),wkStart=w=>new Date(2026,4,7*w-3),FIN=(()=>{let left=500-L.length,w=NEXT[0].w;left-=NEXT.filter(x=>!x.off).length;while(left>0){w++;left-=wkStart(w).getDate()<=7?1:2}return w})(),fD=wkStart(FIN);
-const byR=new Map(ranked.map(x=>[x.r,x])),nR=new Map(NEXT.map(x=>[x.r,x])),cellOf=new Map(),el=t=>document.createElement(t);
+const byR=new Map(ranked.map(x=>[x.r,x])),nR=new Map([...NEXT,...BONUS].map(x=>[x.r,x])),cellOf=new Map(),el=t=>document.createElement(t);
 let ART={},SRC={},REL={};try{ART=JSON.parse(localStorage.getItem("ac.art2"))||{};SRC=JSON.parse(localStorage.getItem("ac.src"))||{};REL=JSON.parse(localStorage.getItem("ac.rel"))||{}}catch(e){}
 const key=x=>x.t+"|"+x.a+"|"+(x.am||""),btn=(c,s,o,k)=>{const b=el("button");b.type="button";b.className=c;if(k)b.dataset.k=k;s?(b.setAttribute("aria-label",s),b.onclick=b.onmouseenter=b.onfocus=()=>{o.textContent=s;const u=k&&ART[k];u&&o.insertAdjacentHTML("afterbegin",`<img src="${u}" alt="">`)}):(b.tabIndex=-1,b.setAttribute("aria-hidden","true"));return b};
 for(let i=1;i<=500;i++){const x=byR.get(i),n=nR.get(i),b=btn("cell"+(x?" on"+(x.w==lastWeek?" recent":""):n?" next":""),x?`#${i} · ${x.t} — ${x.a} (${x.y}) · ${x.w?"week "+x.w:"warm-up"}`:n&&`#${i} · ${n.t} — ${n.a} (${n.y}) · up next`,$("readout"),x?key(x):n&&key(n));x&&cellOf.set(x.t,b);$("crate").append(b)}
@@ -338,10 +348,10 @@ for(let dc=1960;dc<2030;dc+=10){const c=el("div");c.className="dcol";c.innerHTML
 for(let y=1960;y<2030;y++){const c=el("div");c.className="yc";A.filter(x=>x.y==y).forEach(x=>{const s=`${x.y} · ${x.t} — ${x.a}`,d=btn("d"+(x.off?" off":""),s,$("tlRead"));d.title=s;d.dataset.i=A.indexOf(x);c.append(d)});$("tl").append(c)}
 const deep=ranked.reduce((m,x)=>x.r>m.r?x:m),nw=A.reduce((m,x)=>x.y>m.y?x:m),tY=Object.keys(yc).reduce((m,y)=>yc[y]>yc[m]?y:m),yA=A.filter(x=>x.y==tY);
 H("supers",[["Deepest cut",deep.t,`#${deep.r} is the furthest down the list we've gone.`],["Top-10 tally",top10+" of 10","What's Going On, Blue, Songs in the Key of Life, Rumours and Miseducation."],["Repeat artists",LF(Object.keys(cnt).filter(a=>cnt[a]>1)),"Artists we've heard more than one album from."],["Most common year",tY,`${yA.length} albums: ${yA.map(x=>x.a).join(", ")}.`],["Newest album",`${nw.t} (${nw.y})`,nw.off?"Not on the list. The newest list albums are from 2012.":"Straight off the list."],["Show & Tell picks",snt.length+" so far","Picked by "+LF(snt.map(x=>x.st))+"."]].map(([k,t,d])=>`<div class="sup"><span class="k">${k}</span><span class="t">${esc(t)}</span><span class="d">${esc(d)}</span></div>`).join(""));
-const tag=x=>x.st?`<span class="st">Show &amp; Tell · ${x.st}</span>`:"",
-alb=x=>`<div class="alb"><i class="cv" data-k="${esc(key(x))}"></i><div class="ta"><a class="tt" data-q="${esc(x.t+" "+x.a)}" data-am="${x.am||""}" target="_blank" rel="noopener">${esc(x.t)}</a><span class="ar">${esc(x.a)}${x.st?tag(x):x.off?'<span class="ol">Off-list</span>':""}</span></div><span class="yr">${x.y}</span><span class="rk${x.r?"":" dim"}">${x.r?"#"+x.r:"—"}</span></div>`,
+const tag=x=>x.st?`<span class="st">Show &amp; Tell · ${x.st}</span>`:x.hol?`<span class="st hl">${({Thanksgiving:"\u{1F983}",Christmas:"\u{1F384}"})[x.hol]||"\u{1F381}"} ${esc(x.hol)} bonus</span>`:"",
+alb=x=>`<div class="alb"><i class="cv" data-k="${esc(key(x))}"></i><div class="ta"><a class="tt" data-q="${esc(x.t+" "+x.a)}" data-am="${x.am||""}" target="_blank" rel="noopener">${esc(x.t)}</a><span class="ar">${esc(x.a)}${x.st||x.hol?tag(x):x.off?'<span class="ol">Off-list</span>':""}</span></div><span class="yr">${x.y}</span><span class="rk${x.r?"":" dim"}">${x.r?"#"+x.r:"—"}</span></div>`,
 wk=(c,n,s,a)=>`<div class="wk${c}"><div class="n">${n}<small>${s}</small></div><div class="albums">${a.map(alb).join("")}</div></div>`;
-{const la=x=>{const q=`data-q="${esc(x.t+" "+x.a)}" data-am="${x.am||""}" target="_blank" rel="noopener"`;return`<div class="la"><a class="tt lac" ${q} tabindex="-1" aria-hidden="true"><i class="cv" data-k="${esc(key(x))}"></i></a><div class="lat"><a class="tt ttl" ${q}>${esc(x.t)}</a><span class="ar">${esc(x.a)}</span><span class="lmt">${x.y}${x.r?` · <b>#${x.r}</b> on the list`:x.st?` · <b>${esc(x.st)}’s pick</b>`:" · off the list"}</span></div></div>`},
+{const la=x=>{const q=`data-q="${esc(x.t+" "+x.a)}" data-am="${x.am||""}" target="_blank" rel="noopener"`;return`<div class="la"><a class="tt lac" ${q} tabindex="-1" aria-hidden="true"><i class="cv" data-k="${esc(key(x))}"></i></a><div class="lat"><a class="tt ttl" ${q}>${esc(x.t)}</a><span class="ar">${esc(x.a)}</span><span class="lmt">${x.y}${x.r?` · <b>#${x.r}</b> on the list`:x.st?` · <b>${esc(x.st)}’s pick</b>`:" · off the list"}</span>${x.hol?tag(x):""}</div></div>`},
 fmt=d=>d.toLocaleDateString("en-US",{month:"short",day:"numeric"});let lastM="",h="";
 Object.keys(groups).sort((a,b)=>b-a).forEach((w,i)=>{w=+w;const st=wkStart(w),m=w?st.toLocaleDateString("en-US",{month:"long",year:"numeric"}):"April 2026",old=i>3?" old":"",sw=groups[w].some(x=>x.st);
 if(m!==lastM){h+=`<div class="lm${old}"><span>${m}</span></div>`;lastM=m}
@@ -351,6 +361,7 @@ H("log",h)}{const n=Object.keys(groups).length,lb=$("logMore");lb.hidden=n<=4;lb
 $("twWhen").textContent=`Week ${NEXT[0].w} · from ${new Date(2026,4,7*NEXT[0].w-3).toLocaleDateString("en-US",{month:"short",day:"numeric"})}`;
 const twCard=x=>{const q=`data-q="${esc(x.t+" "+x.a)}" data-am="${x.am||""}" target="_blank" rel="noopener"`;return`<div class="twc"><a class="tt cvl" ${q} aria-hidden="true" tabindex="-1"><i class="cv" data-k="${esc(key(x))}"></i></a><div class="tx"><a class="tt ttl" ${q}>${esc(x.t)}</a><span class="ar">${esc(x.a)}</span><span class="mt"><span>${x.y}</span>${x.r?`<b>#${x.r} on the list</b>`:x.off?(x.st?tag(x):"<span>Off the list</span>"):""}</span><a class="tt go" ${q}>Listen \u2197</a></div></div>`};
 H("tw",NEXT.map(twCard).join(""));
+H("twb",BONUS.length?`<p class="twbh"><b>${tag(BONUS[0])}</b> One extra for the holiday, on top of this week's two.</p><div class="tw">${BONUS.map(twCard).join("")}</div>`:"");
 H("notes",NOTES.map((n,i)=>{const r=`<div class="rel"><div class="v"><b>v${n.v}</b>${n.d}</div><ul>${n.items.map(i=>`<li>${esc(i)}</li>`).join("")}</ul></div>`;return i?`<details class="relx"><summary>Earlier: v${n.v} \u00b7 ${n.d}</summary>${r}</details>`:r}).join(""));
 const store={get(k,d){try{const v=localStorage.getItem(k);return v===null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
 const SVC={spotify:"Spotify",apple:"Apple Music"},sb=Q(".svc button");
@@ -377,11 +388,11 @@ function paint(){const m=missedAll(),left=m.filter(x=>!caught.has(x.t)),done=m.l
 cellOf.forEach(b=>b.classList.remove("missed"));left.forEach(x=>cellOf.get(x.t)?.classList.add("missed"));
 $("lgMissed").hidden=!left.length;$("spin").hidden=!left.length;$("catchBar").style.width=m.length?done/m.length*100+"%":"0";$("catchWrap").hidden=!m.length;
 $("mineSum").innerHTML=join===null?"New to the club, or catching up? Pick the week you joined and this section turns into your own catch-up list.":m.length?`${(()=>{const b=A.filter(x=>x.w<join).length,k=m.length-b;return b&&k?`Your catch-up list has <b>${m.length}</b> albums: ${b} from before you joined and ${k} you missed since.`:b?`The club heard <b>${b}</b> albums before you joined.`:`You've been here since ${join?"week "+join:"day one"}, with <b>${k}</b> album${k===1?"":"s"} to catch up on.`})()} You've caught up on <b>${done}</b> of them. That puts you at <b>${N-left.length}</b> of the club's ${N}.`+(left.length?" Hollow squares on the grid are the list albums you still have to hear.":" You're fully caught up."):`You've been here for all <b>${N}</b> albums. Missed a few? Open <b>Missed some since you joined?</b> below and untick them.`;renderStats()}
-function buildSince(){const sn=$("since"),on=join!==null;sn.hidden=!on;if(!on)return H("sinceList","");H("sinceList",A.filter(x=>x.w>=join).reverse().map((x,i)=>`<label for="sj${i}"><input type="checkbox" id="sj${i}" data-t="${esc(x.t)}"${!skip.has(x.t)||caught.has(x.t)?" checked":""}><i class="cv sm" data-k="${esc(key(x))}"></i><span class="ta"><span class="tt">${esc(x.t)}</span><span class="ar">${esc(x.a)}${x.st?tag(x):x.off?'<span class="ol">Off-list</span>':""}</span></span><span class="rk">${x.w?"wk "+x.w:"April"}</span></label>`).join(""));setTimeout(paintArt)}
-function buildList(){buildSince();setTimeout(()=>{const n=$("catch").children.length,b=$("catchMore"),c=$("catch");c.classList.toggle("short",n>8&&!c.dataset.all);b.hidden=n<=8;b.textContent=c.dataset.all?"Show fewer":`Show all ${n} albums`;b.onclick=()=>{c.dataset.all=c.dataset.all?"":"1";c.classList.toggle("short",!c.dataset.all);b.textContent=c.dataset.all?"Show fewer":`Show all ${n} albums`;b.setAttribute("aria-expanded",!!c.dataset.all)}});setTimeout(paintArt);H("catch",missedAll().map((x,i)=>`<label for="cu${i}"><input type="checkbox" id="cu${i}" data-t="${esc(x.t)}"${caught.has(x.t)?" checked":""}><i class="cv sm" data-k="${esc(key(x))}"></i><span class="ta"><span class="tt">${esc(x.t)}</span><span class="ar">${esc(x.a)}${x.st?tag(x):x.off?'<span class="ol">Off-list</span>':""}</span></span><span class="rk">${x.w?"wk "+x.w:"April"}</span></label>`).join(""))}
+function buildSince(){const sn=$("since"),on=join!==null;sn.hidden=!on;if(!on)return H("sinceList","");H("sinceList",A.filter(x=>x.w>=join).reverse().map((x,i)=>`<label for="sj${i}"><input type="checkbox" id="sj${i}" data-t="${esc(x.t)}"${!skip.has(x.t)||caught.has(x.t)?" checked":""}><i class="cv sm" data-k="${esc(key(x))}"></i><span class="ta"><span class="tt">${esc(x.t)}</span><span class="ar">${esc(x.a)}${x.st||x.hol?tag(x):x.off?'<span class="ol">Off-list</span>':""}</span></span><span class="rk">${x.w?"wk "+x.w:"April"}</span></label>`).join(""));setTimeout(paintArt)}
+function buildList(){buildSince();setTimeout(()=>{const n=$("catch").children.length,b=$("catchMore"),c=$("catch");c.classList.toggle("short",n>8&&!c.dataset.all);b.hidden=n<=8;b.textContent=c.dataset.all?"Show fewer":`Show all ${n} albums`;b.onclick=()=>{c.dataset.all=c.dataset.all?"":"1";c.classList.toggle("short",!c.dataset.all);b.textContent=c.dataset.all?"Show fewer":`Show all ${n} albums`;b.setAttribute("aria-expanded",!!c.dataset.all)}});setTimeout(paintArt);H("catch",missedAll().map((x,i)=>`<label for="cu${i}"><input type="checkbox" id="cu${i}" data-t="${esc(x.t)}"${caught.has(x.t)?" checked":""}><i class="cv sm" data-k="${esc(key(x))}"></i><span class="ta"><span class="tt">${esc(x.t)}</span><span class="ar">${esc(x.a)}${x.st||x.hol?tag(x):x.off?'<span class="ol">Off-list</span>':""}</span></span><span class="rk">${x.w?"wk "+x.w:"April"}</span></label>`).join(""))}
 let lastPick=null;
 $("spin").onclick=()=>{const left=missedAll().filter(x=>!caught.has(x.t)),pool=left.length>1?left.filter(x=>x!==lastPick):left;if(!pool.length)return;const x=lastPick=pool[Math.random()*pool.length|0];
-H("spOut",`<div class="spc"><i class="cv" data-k="${esc(key(x))}"></i><div class="ta"><span class="eyebrow">Your pick · ${x.w?"week "+x.w:"April warm-up"}</span><a class="tt" data-q="${esc(x.t+" "+x.a)}" data-am="${x.am||""}" target="_blank" rel="noopener">${esc(x.t)}</a><span class="ar">${esc(x.a)}${x.st?tag(x):x.off?'<span class="ol">Off-list</span>':""}</span></div><button type="button" class="xb" id="spDone">Mark as heard</button></div>`);
+H("spOut",`<div class="spc"><i class="cv" data-k="${esc(key(x))}"></i><div class="ta"><span class="eyebrow">Your pick · ${x.w?"week "+x.w:"April warm-up"}</span><a class="tt" data-q="${esc(x.t+" "+x.a)}" data-am="${x.am||""}" target="_blank" rel="noopener">${esc(x.t)}</a><span class="ar">${esc(x.a)}${x.st||x.hol?tag(x):x.off?'<span class="ol">Off-list</span>':""}</span></div><button type="button" class="xb" id="spDone">Mark as heard</button></div>`);
 $("spin").textContent="🎲 Pick another";setSvc(store.get("ac.svc","spotify"));paintArt();
 $("spDone").onclick=()=>{caught.add(x.t);save();redo();cheer(x.t);lastPick=null;$("spin").textContent="🎲 Pick one for me";H("spOut",`<p class="sub">Nice, <b>${esc(x.t)}</b> is checked off.</p>`)}};
 $("catch").onchange=e=>{const t=e.target.dataset.t;if(t){e.target.checked?caught.add(t):caught.delete(t);save();paint();buildSince();e.target.checked&&cheer(t)}};

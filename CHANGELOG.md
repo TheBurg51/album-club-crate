@@ -6,6 +6,8 @@ The site's own Release notes section shows only the two most recent versions. Th
 
 ## v2.1 · Nov 26, 2026
 
+- **Holiday bonus albums:** a `BONUS` list in the page data holds extra holiday picks for the current week. They show under This week's albums with a holiday tag (🦃 Thanksgiving, 🎄 Christmas, 🎁 otherwise), count as this week's squares on the grid and in the link preview, and keep the tag in the log once they move there (holiday as the 8th item of an `R` row).
+- **Show & Tell rotation:** the rotation data can name an organizer (`jan`) who takes every January. The banner and rotation list work out each month from there, skipping the organizer in the regular order.
 - **Missed some since you joined?** A fold under the catch-up list shows every club album from your join week on, ticked. Untick one you haven't heard and it joins your catch-up list, shows as a hollow square on the grid, counts against Your numbers and can come up in Pick one for me. Ticking it later counts as catching up. This works for day-one members too, who used to have nothing to tick. Crate links and codes carry the unticked albums between devices.
 
 ## v2.0 · Nov 23, 2026
