@@ -116,6 +116,10 @@ h1{line-height:.95}h2{line-height:1.05}.twc a.ttl{letter-spacing:-.01em;font-var
 .mscel .msrk.wig{animation:rkwig .5s ease-in-out 3}
 @media (max-width:520px){.mscel{grid-template-columns:auto minmax(0,1fr) auto}.mscel .msrk{height:92px;margin:-30px -4px -14px 0}.toast.hasrk{padding-left:84px}.toast .rk{height:78px}}
 @media (prefers-reduced-motion:reduce){.toast .rk,.mscel .msrk{animation:none!important}}
+
+.since{margin-top:14px}.since #sinceList{max-height:440px;overflow:auto;padding-right:4px}
+#sinceList input:checked~.ta{color:inherit;text-decoration:none}
+#sinceList input:not(:checked)~.ta{color:var(--mu)}
 </style>
 </head>
 <body>
@@ -152,6 +156,10 @@ h1{line-height:.95}h2{line-height:1.05}.twc a.ttl{letter-spacing:-.01em;font-var
 <div class="catch" id="catch"></div>
 <button type="button" class="more" id="catchMore" hidden></button>
 </div>
+<details class="xfer since" id="since" hidden>
+<summary><b>Missed some since you joined?</b><span>Untick the ones you haven't heard and they move to your catch-up list</span></summary>
+<div class="catch" id="sinceList"></div>
+</details>
 <details class="xfer" id="xfer">
 <summary><b>Move your crate</b><span>Take your picks to another phone or computer</span></summary>
 <p class="xd" style="margin:0">Your picks are saved in this browser only. Here's how to bring them along.</p>
@@ -309,8 +317,8 @@ const row=([w,t,a,y,r,am,st])=>({w,t,a,y,r:r>0?r:undefined,off:r<0,am,st}), A=R.
 const NEXT=[[30,"The Idler Wheel...","Fiona Apple",2012,213,"1462213924"],[30,"DAMN.","Kendrick Lamar",2017,175,"1440881047"]].map(row);
 const $=id=>document.getElementById(id);
 const NOTES=[
+{v:"2.1",d:"Nov 26, 2026",items:["Here since day one but missed a few? Your crate has a new “Missed some since you joined?” list: untick any club album you haven’t heard and it moves to your catch-up list, the grid and your numbers. Crate links carry these over to your other devices too."]},
 {v:"2.0",d:"Nov 23, 2026",items:["The turntable has a walnut wood finish, and its Album Club label now stars Rocco.","Rocco pops up to cheer you on when you tick off catch-up albums, and puts on a party hat for the big moments and club milestones.","A secret on the turntable: give the record a good spin before you drop the needle and see what happens.","A warmer look: cream paper, a soft serif for headings, and burnt orange and mustard instead of the old blue. Dark mode turns warm espresso.","Drop the needle and the record turns into colored vinyl that matches the album cover: splatter, swirl or a two-tone blend.","Roomier on phones: album titles get more space on This week\u2019s cards and in the log, long catch-up lists show 8 at a time, and swipe rows fade at the edge so you know there\u2019s more.","The home-screen icon, the turntable and the link preview card got the same warm makeover. To get the new icon, remove the Crate from your home screen and add it again."]},
-{v:"1.9",d:"Nov 23, 2026",items:["A menu at the top jumps straight to This week, My crate, Stats, the Turntable or the Log, and sticks around as you scroll.","The log shows the last four weeks. Tap \u201cShow all weeks\u201d for the rest.","Phones get a tighter layout: smaller stat tiles, the % sticker next to the intro, the release-year chart grouped by decade, and swipeable rows for Fun facts and Show & Tell picks.","Off-list albums carry an OFF-LIST tag in the log, and the home-screen bar is slimmer (tap How for the steps)."]},
 ];
 const picks={Nathan:"Yumeno Garden",Devo:"Coming Home",Neil:"Petals for Armor","George Price":"E. 1999 Eternal","Bryan Bland":"Peripheral Vision",Jerry:"Abandoned Luncheonette"};
 const esc=s=>s.replace(/&/g,"&amp;").replace(/</g,"&lt;"),Q=s=>document.querySelectorAll(s),H=(i,h)=>$(i).innerHTML=h,LF=a=>new Intl.ListFormat("en").format(a),MY={month:"long",year:"numeric"},N=A.length;
@@ -350,9 +358,10 @@ function setSvc(s){SVC[s]||(s="spotify");store.set("ac.svc",s);sb.forEach(b=>b.s
 sb.forEach(b=>b.onclick=()=>setSvc(b.dataset.svc));setSvc(store.get("ac.svc","spotify"));
 const sel=$("joinSel"),NW=NEXT[0].w;
 sel.innerHTML='<option value="">Pick a week</option>'+Array.from({length:NW},(_,i)=>{i=NW-i;return`<option value="${i}">Week ${i} · ${new Date(2026,4,7*i-3).toLocaleDateString("en-US",{month:"short",day:"numeric"})}${i==NW?" (this week)":""}</option>`}).join("")+'<option value="0">Day one (I did the April warm-up)</option>';
-let join=store.get("ac.join",null),caught=new Set(store.get("ac.caught",[]));
+let join=store.get("ac.join",null),caught=new Set(store.get("ac.caught",[])),skip=new Set(store.get("ac.skip",[]));
 if(join!==null)sel.value=join;
-const missedAll=()=>join===null?[]:A.filter(x=>x.w<join),save=()=>{store.set("ac.join",join);store.set("ac.caught",[...caught])},redo=()=>{buildList();paint()};
+// catch-up list: everything from before you joined, plus club albums since then that you unticked (skip)
+const missedAll=()=>join===null?[]:A.filter(x=>x.w<join||skip.has(x.t)),save=()=>{store.set("ac.join",join);store.set("ac.caught",[...caught]);store.set("ac.skip",[...skip])},redo=()=>{buildList();paint()};
 // stats: personal numbers for someone catching up (club albums from their join week on, plus the ones they've ticked off)
 let sv=store.get("ac.sv","me");
 function renderStats(){const left=new Set(missedAll().filter(x=>!caught.has(x.t))),me=left.size>0&&sv!=="club",S=me?A.filter(x=>!left.has(x)):A,SL=S.filter(x=>!x.off),SR=SL.filter(x=>x.r),t10=SR.filter(x=>x.r<=10).length;
@@ -367,14 +376,16 @@ Q("#sv button").forEach(b=>b.onclick=()=>{sv=b.dataset.v;store.set("ac.sv",sv);r
 function paint(){const m=missedAll(),left=m.filter(x=>!caught.has(x.t)),done=m.length-left.length;
 cellOf.forEach(b=>b.classList.remove("missed"));left.forEach(x=>cellOf.get(x.t)?.classList.add("missed"));
 $("lgMissed").hidden=!left.length;$("spin").hidden=!left.length;$("catchBar").style.width=m.length?done/m.length*100+"%":"0";$("catchWrap").hidden=!m.length;
-$("mineSum").innerHTML=join===null?"New to the club, or catching up? Pick the week you joined and this section turns into your own catch-up list.":m.length?`The club heard <b>${m.length}</b> albums before you joined, and you've caught up on <b>${done}</b> of them. That puts you at <b>${N-left.length}</b> of the club's ${N}.`+(left.length?" Hollow squares on the grid are the list albums you still have to hear.":" You're fully caught up."):`You've been here for all <b>${N}</b> albums. Nothing to catch up on.`;renderStats()}
-function buildList(){setTimeout(()=>{const n=$("catch").children.length,b=$("catchMore"),c=$("catch");c.classList.toggle("short",n>8&&!c.dataset.all);b.hidden=n<=8;b.textContent=c.dataset.all?"Show fewer":`Show all ${n} albums`;b.onclick=()=>{c.dataset.all=c.dataset.all?"":"1";c.classList.toggle("short",!c.dataset.all);b.textContent=c.dataset.all?"Show fewer":`Show all ${n} albums`;b.setAttribute("aria-expanded",!!c.dataset.all)}});setTimeout(paintArt);H("catch",missedAll().map((x,i)=>`<label for="cu${i}"><input type="checkbox" id="cu${i}" data-t="${esc(x.t)}"${caught.has(x.t)?" checked":""}><i class="cv sm" data-k="${esc(key(x))}"></i><span class="ta"><span class="tt">${esc(x.t)}</span><span class="ar">${esc(x.a)}${x.st?tag(x):x.off?'<span class="ol">Off-list</span>':""}</span></span><span class="rk">${x.w?"wk "+x.w:"April"}</span></label>`).join(""))}
+$("mineSum").innerHTML=join===null?"New to the club, or catching up? Pick the week you joined and this section turns into your own catch-up list.":m.length?`${(()=>{const b=A.filter(x=>x.w<join).length,k=m.length-b;return b&&k?`Your catch-up list has <b>${m.length}</b> albums: ${b} from before you joined and ${k} you missed since.`:b?`The club heard <b>${b}</b> albums before you joined.`:`You've been here since ${join?"week "+join:"day one"}, with <b>${k}</b> album${k===1?"":"s"} to catch up on.`})()} You've caught up on <b>${done}</b> of them. That puts you at <b>${N-left.length}</b> of the club's ${N}.`+(left.length?" Hollow squares on the grid are the list albums you still have to hear.":" You're fully caught up."):`You've been here for all <b>${N}</b> albums. Missed a few? Open <b>Missed some since you joined?</b> below and untick them.`;renderStats()}
+function buildSince(){const sn=$("since"),on=join!==null;sn.hidden=!on;if(!on)return H("sinceList","");H("sinceList",A.filter(x=>x.w>=join).reverse().map((x,i)=>`<label for="sj${i}"><input type="checkbox" id="sj${i}" data-t="${esc(x.t)}"${!skip.has(x.t)||caught.has(x.t)?" checked":""}><i class="cv sm" data-k="${esc(key(x))}"></i><span class="ta"><span class="tt">${esc(x.t)}</span><span class="ar">${esc(x.a)}${x.st?tag(x):x.off?'<span class="ol">Off-list</span>':""}</span></span><span class="rk">${x.w?"wk "+x.w:"April"}</span></label>`).join(""));setTimeout(paintArt)}
+function buildList(){buildSince();setTimeout(()=>{const n=$("catch").children.length,b=$("catchMore"),c=$("catch");c.classList.toggle("short",n>8&&!c.dataset.all);b.hidden=n<=8;b.textContent=c.dataset.all?"Show fewer":`Show all ${n} albums`;b.onclick=()=>{c.dataset.all=c.dataset.all?"":"1";c.classList.toggle("short",!c.dataset.all);b.textContent=c.dataset.all?"Show fewer":`Show all ${n} albums`;b.setAttribute("aria-expanded",!!c.dataset.all)}});setTimeout(paintArt);H("catch",missedAll().map((x,i)=>`<label for="cu${i}"><input type="checkbox" id="cu${i}" data-t="${esc(x.t)}"${caught.has(x.t)?" checked":""}><i class="cv sm" data-k="${esc(key(x))}"></i><span class="ta"><span class="tt">${esc(x.t)}</span><span class="ar">${esc(x.a)}${x.st?tag(x):x.off?'<span class="ol">Off-list</span>':""}</span></span><span class="rk">${x.w?"wk "+x.w:"April"}</span></label>`).join(""))}
 let lastPick=null;
 $("spin").onclick=()=>{const left=missedAll().filter(x=>!caught.has(x.t)),pool=left.length>1?left.filter(x=>x!==lastPick):left;if(!pool.length)return;const x=lastPick=pool[Math.random()*pool.length|0];
 H("spOut",`<div class="spc"><i class="cv" data-k="${esc(key(x))}"></i><div class="ta"><span class="eyebrow">Your pick · ${x.w?"week "+x.w:"April warm-up"}</span><a class="tt" data-q="${esc(x.t+" "+x.a)}" data-am="${x.am||""}" target="_blank" rel="noopener">${esc(x.t)}</a><span class="ar">${esc(x.a)}${x.st?tag(x):x.off?'<span class="ol">Off-list</span>':""}</span></div><button type="button" class="xb" id="spDone">Mark as heard</button></div>`);
 $("spin").textContent="🎲 Pick another";setSvc(store.get("ac.svc","spotify"));paintArt();
 $("spDone").onclick=()=>{caught.add(x.t);save();redo();cheer(x.t);lastPick=null;$("spin").textContent="🎲 Pick one for me";H("spOut",`<p class="sub">Nice, <b>${esc(x.t)}</b> is checked off.</p>`)}};
-$("catch").onchange=e=>{const t=e.target.dataset.t;if(t){e.target.checked?caught.add(t):caught.delete(t);save();paint();e.target.checked&&cheer(t)}};
+$("catch").onchange=e=>{const t=e.target.dataset.t;if(t){e.target.checked?caught.add(t):caught.delete(t);save();paint();buildSince();e.target.checked&&cheer(t)}};
+$("sinceList").onchange=e=>{const t=e.target.dataset.t;if(!t)return;if(e.target.checked){caught.add(t);save();redo();cheer(t)}else{skip.add(t);caught.delete(t);save();redo();toast(`<b>${esc(t)}</b> is on your catch-up list now. No rush.`,"peek")}};
 // motivation when someone ticks off a catch-up album
 let tT=0;const toast=(h,rk)=>{const e=$("toast");e.innerHTML=(rk?`<span>${h}</span>`:h)+(rk?`<img class="rk" src="img/rocco-${rk}.webp" alt="">`:"");e.classList.toggle("hasrk",!!rk);e.classList.remove("on");void e.offsetWidth;e.classList.add("on");clearTimeout(tT);tT=setTimeout(()=>e.classList.remove("on"),rk?4300:3800)};
 // Rocco stickers: load them early so the first cheer shows him straight away
@@ -391,8 +402,8 @@ sel.onchange=()=>{join=sel.value===""?null:+sel.value;save();redo();H("spOut",""
 redo();
 try{$("xfer").open=localStorage.getItem("ac.xfer")==="1"}catch(e){}$("xfer").ontoggle=()=>store.set("ac.xfer",$("xfer").open?1:0);
 const xm=$("xmsg"),ci=$("code"),sm="Your crate link is in the box. Copy it, then open it on your other device.";
-$("cpy").onclick=()=>{const c=btoa(unescape(encodeURIComponent(JSON.stringify({j:join,c:[...caught]})))),l=location.origin+location.pathname+"?code="+encodeURIComponent(c),p=navigator.clipboard?.writeText(l),fb=()=>{ci.value=l;ci.select();xm.textContent=sm};p?p.then(()=>{xm.textContent="Link copied! Text or email it to yourself, then open it on your other device.";$("cpy").textContent="Copied \u2713";setTimeout(()=>$("cpy").textContent="Copy my crate link",2500)},fb):fb()};
-$("ld").onclick=()=>{try{let v=ci.value.trim();const m=v.match(/[?&]code=([^&#\s]+)/);if(m)v=decodeURIComponent(m[1]);const d=JSON.parse(decodeURIComponent(escape(atob(v))));join=d.j??null;caught=new Set(d.c||[]);save();sel.value=join??"";redo();xm.textContent=`Loaded. You've ticked off ${caught.size} catch-up album${caught.size==1?"":"s"}.`}catch(e){xm.textContent="That didn't work. Copy the whole link or code from your other device and try again."}};
+$("cpy").onclick=()=>{const c=btoa(unescape(encodeURIComponent(JSON.stringify({j:join,c:[...caught],s:[...skip]})))),l=location.origin+location.pathname+"?code="+encodeURIComponent(c),p=navigator.clipboard?.writeText(l),fb=()=>{ci.value=l;ci.select();xm.textContent=sm};p?p.then(()=>{xm.textContent="Link copied! Text or email it to yourself, then open it on your other device.";$("cpy").textContent="Copied \u2713";setTimeout(()=>$("cpy").textContent="Copy my crate link",2500)},fb):fb()};
+$("ld").onclick=()=>{try{let v=ci.value.trim();const m=v.match(/[?&]code=([^&#\s]+)/);if(m)v=decodeURIComponent(m[1]);const d=JSON.parse(decodeURIComponent(escape(atob(v))));join=d.j??null;caught=new Set(d.c||[]);skip=new Set(d.s||[]);save();sel.value=join??"";redo();xm.textContent=`Loaded. You've ticked off ${caught.size} catch-up album${caught.size==1?"":"s"}.`}catch(e){xm.textContent="That didn't work. Copy the whole link or code from your other device and try again."}};
 // album covers: looked up from Apple Music in the viewer's browser and cached there
 const RV=/[?&]covers\b/.test(location.search);
 function renderReview(){if(!RV)return;const all=[...A,...NEXT];$("review").hidden=false;let q=0,x=0;
@@ -505,7 +516,7 @@ $("ahF").onsubmit=e=>{e.preventDefault();$("ahM").textContent="Unlocking…";unl
 $("ahLock").onclick=()=>{try{localStorage.removeItem("ac.ahead")}catch(e){}$("ahP").value="";$("ahF").hidden=false;$("ahLock").hidden=true;H("ahL","");$("ahM").textContent="Locked."};
 const saved=store.get("ac.ahead","");saved?unlock(saved,true):$("ahM").textContent="Enter the passphrase to see what’s coming up.";setTimeout(()=>sec.scrollIntoView(),60)})();
 // progress handed over from the old claude.ai page: ?code=<crate code> loads it once, then the link is cleaned up
-(()=>{const c=new URLSearchParams(location.search).get("code");if(!c)return;try{const d=JSON.parse(decodeURIComponent(escape(atob(c))));if(d.j!=null)join=d.j;(d.c||[]).forEach(t=>caught.add(t));save();sel.value=join??"";redo();xm.textContent=`Welcome to the new Crate! Your progress came with you${caught.size?`: ${caught.size} catch-up album${caught.size===1?"":"s"} ticked off`:""}.`;setTimeout(()=>$("mineH").scrollIntoView({behavior:"smooth"}),300)}catch(e){}
+(()=>{const c=new URLSearchParams(location.search).get("code");if(!c)return;try{const d=JSON.parse(decodeURIComponent(escape(atob(c))));if(d.j!=null)join=d.j;(d.c||[]).forEach(t=>caught.add(t));(d.s||[]).forEach(t=>skip.add(t));save();sel.value=join??"";redo();xm.textContent=`Welcome to the new Crate! Your progress came with you${caught.size?`: ${caught.size} catch-up album${caught.size===1?"":"s"} ticked off`:""}.`;setTimeout(()=>$("mineH").scrollIntoView({behavior:"smooth"}),300)}catch(e){}
 const u=new URL(location.href);u.searchParams.delete("code");history.replaceState(null,"",u.pathname+u.search+u.hash)})();
 // fresh content: home-screen apps on iPhone have no reload button and can show a saved copy, so give them ways to refresh
 (()=>{const SA=matchMedia("(display-mode: standalone)").matches||navigator.standalone,me=[...document.scripts].find(x=>x.textContent.includes("const NEXT="))?.textContent||"";

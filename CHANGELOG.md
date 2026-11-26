@@ -4,6 +4,10 @@ Changes to how the Album Club Crate site works. Weekly album updates, correction
 
 The site's own Release notes section shows only the two most recent versions. This file keeps all of them.
 
+## v2.1 · Nov 26, 2026
+
+- **Missed some since you joined?** A fold under the catch-up list shows every club album from your join week on, ticked. Untick one you haven't heard and it joins your catch-up list, shows as a hollow square on the grid, counts against Your numbers and can come up in Pick one for me. Ticking it later counts as catching up. This works for day-one members too, who used to have nothing to tick. Crate links and codes carry the unticked albums between devices.
+
 ## v2.0 · Nov 23, 2026
 
 - **Warm "liner notes" look:**
