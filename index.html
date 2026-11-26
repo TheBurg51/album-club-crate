@@ -124,6 +124,9 @@ h1{line-height:.95}h2{line-height:1.05}.twc a.ttl{letter-spacing:-.01em;font-var
 .twb:empty{display:none}.twb{margin-top:16px}.twbh{margin:0 0 10px;font-size:14px;color:var(--mu);display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px}.twbh b .st{font-size:13px;padding:3px 10px;margin:0}
 .st.hl{background:color-mix(in srgb,var(--co) 22%,var(--sh));color:var(--in)}
 .twc .st.hl{margin-left:8px}.la .st.hl{display:table;margin:4px 0 0}
+
+.rot li{gap:1px}.rot .who small{font-weight:500;font-size:11px;opacity:.7;margin-left:3px}
+@media (min-width:900px){.snt .rot{grid-template-columns:repeat(6,minmax(0,1fr))}}
 </style>
 </head>
 <body>
@@ -146,7 +149,7 @@ h1{line-height:.95}h2{line-height:1.05}.twc a.ttl{letter-spacing:-.01em;font-var
 </section>
 <section class="snt" aria-labelledby="sntH">
 <div class="sntTop"><div><div class="eyebrow" id="sntWhen"></div><h2 id="sntH"></h2></div><p>Show &amp; Tell: the first week of each month, one album that isn't on the list. Turns go by seniority, and Nathan, as organizer, takes every January.</p></div>
-<details><summary>See the full rotation</summary><ol class="rot" id="rot" aria-label="Show and Tell rotation"></ol></details>
+<details><summary>See the next 12 months</summary><ol class="rot" id="rot" aria-label="Show and Tell rotation"></ol></details>
 </section>
 <section class="panel mine" id="s-crate" aria-labelledby="mineH">
 <div class="mine-top">
@@ -323,7 +326,7 @@ const NEXT=[[30,"The Idler Wheel...","Fiona Apple",2012,213,"1462213924"],[30,"D
 const BONUS=[[30,"Harvest","Neil Young",1972,72,"1015739190","","Thanksgiving"]].map(row).filter(x=>x.w===NEXT[0].w);
 const $=id=>document.getElementById(id);
 const NOTES=[
-{v:"2.1",d:"Nov 26, 2026",items:["Holiday bonus albums get their own spot under This week\u2019s albums, and a holiday tag in the log.","Here since day one but missed a few? Your crate has a new “Missed some since you joined?” list: untick any club album you haven’t heard and it moves to your catch-up list, the grid and your numbers. Crate links carry these over to your other devices too."]},
+{v:"2.1",d:"Nov 26, 2026",items:["The Show & Tell rotation is now a month-by-month schedule of the next 12 months.","Holiday bonus albums get their own spot under This week\u2019s albums, and a holiday tag in the log.","Here since day one but missed a few? Your crate has a new “Missed some since you joined?” list: untick any club album you haven’t heard and it moves to your catch-up list, the grid and your numbers. Crate links carry these over to your other devices too."]},
 {v:"2.0",d:"Nov 23, 2026",items:["The turntable has a walnut wood finish, and its Album Club label now stars Rocco.","Rocco pops up to cheer you on when you tick off catch-up albums, and puts on a party hat for the big moments and club milestones.","A secret on the turntable: give the record a good spin before you drop the needle and see what happens.","A warmer look: cream paper, a soft serif for headings, and burnt orange and mustard instead of the old blue. Dark mode turns warm espresso.","Drop the needle and the record turns into colored vinyl that matches the album cover: splatter, swirl or a two-tone blend.","Roomier on phones: album titles get more space on This week\u2019s cards and in the log, long catch-up lists show 8 at a time, and swipe rows fade at the edge so you know there\u2019s more.","The home-screen icon, the turntable and the link preview card got the same warm makeover. To get the new icon, remove the Crate from your home screen and add it again."]},
 ];
 const picks={Nathan:"Yumeno Garden",Devo:"Coming Home",Neil:"Petals for Armor","George Price":"E. 1999 Eternal","Bryan Bland":"Peripheral Vision",Jerry:"Abandoned Luncheonette"};
@@ -332,11 +335,11 @@ const lastWeek=Math.max(...A.map(x=>x.w)),L=A.filter(x=>!x.off),snt=A.filter(x=>
 const RD=JSON.parse($("rotData").textContent),ROT=RD.rot,NI=RD.next,[nY,nM]=RD.nextMonth.split("-").map(Number),mon=i=>new Date(nY,nM-1+i,1).toLocaleDateString("en-US",MY),ORG=RD.jan||null,
 // Show & Tell schedule: walk month by month from nextMonth. January always goes to the organizer (jan);
 // every other month goes to the next person in the rotation, skipping the organizer.
-SCH=(()=>{const o=[];let k=NI,i=0;while(k<ROT.length&&i<120){if(ORG&&new Date(nY,nM-1+i,1).getMonth()===0)o.push({p:ORG,i});else{if(ROT[k]===ORG){k++;continue}o.push({p:ROT[k],i});k++}i++}return o})(),
+SCH=(()=>{const o=[];let k=NI,i=0;while(o.length<12&&i<24){k%=ROT.length;if(ORG&&new Date(nY,nM-1+i,1).getMonth()===0)o.push({p:ORG,i});else{if(ROT[k]===ORG){k++;continue}o.push({p:ROT[k],i});k++}i++}return o})(),
 when=p=>SCH.find(x=>x.p===p),NOWP=SCH.length?SCH[0].p:ROT[NI];
 $("sntWhen").textContent="Show & Tell · up next · "+mon(0);
 $("sntH").textContent=NOWP+"'s pick";
-H("rot",ROT.map((p,i)=>{const s=when(p),now=s&&s.i===0,w=p===ORG&&s?(now?"Up next · "+mon(s.i):"Every January · next "+new Date(nY,nM-1+s.i,1).toLocaleDateString("en-US",{month:"short",year:"numeric"})):i<NI||!s?(picks[p]?"Picked "+picks[p]:"Done"):now?"Up next · "+mon(0).split(" ")[0]:mon(s.i);return`<li class="${now?"now":i<NI&&p!==ORG?"done":""}"><span class="who">${i+1}. ${p}</span><span class="when" title="${w}">${w}</span></li>`}).join(""));
+H("rot",SCH.map(({p,i})=>`<li class="${i?"":"now"}"><span class="when">${(i?"":"Up next · ")+new Date(nY,nM-1+i,1).toLocaleDateString("en-US",{month:"short",year:"numeric"})}</span><span class="who">${esc(p)}${p===ORG?" <small>organizer</small>":""}</span></li>`).join(""));
 const ranked=L.filter(x=>x.r),wkStart=w=>new Date(2026,4,7*w-3),FIN=(()=>{let left=500-L.length,w=NEXT[0].w;left-=NEXT.filter(x=>!x.off).length;while(left>0){w++;left-=wkStart(w).getDate()<=7?1:2}return w})(),fD=wkStart(FIN);
 const byR=new Map(ranked.map(x=>[x.r,x])),nR=new Map([...NEXT,...BONUS].map(x=>[x.r,x])),cellOf=new Map(),el=t=>document.createElement(t);
 let ART={},SRC={},REL={};try{ART=JSON.parse(localStorage.getItem("ac.art2"))||{};SRC=JSON.parse(localStorage.getItem("ac.src"))||{};REL=JSON.parse(localStorage.getItem("ac.rel"))||{}}catch(e){}
